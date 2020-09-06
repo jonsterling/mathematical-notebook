@@ -1,0 +1,50 @@
+\documentclass{jon-book}
+\usepackage{jon-todo}
+\usepackage{macros}
+\usepackage{namespace}
+
+%\usepackage[inline]{showlabels}
+%\renewcommand{\showlabelfont}{\small\ttfamily\color{gray}}
+
+\addbibresource{references/refs.bib}
+\AtEveryBibitem{%
+  \iffieldundef{doi}{}{
+    \clearfield{url}
+  }
+  \iffieldundef{eprint}{}{
+    \clearfield{url}
+  }
+}
+
+
+\NewDocumentCommand\InputChapter{mm}{
+  \begin{namespace}{#1}
+    \include{#2}
+  \end{namespace}
+}
+
+\begin{document}
+
+\title{\MakeUppercase{Mathematical Notebook}}
+
+\author{\emph{Jonathan Sterling}}
+
+% Please add your name as you contribute.
+
+\date{\today}
+
+\maketitle
+
+\frontmatter
+\dominitoc
+\tableofcontents
+
+\mainmatter
+\InputChapter{fg}{chapters/functorial-geometry}
+
+
+\backmatter
+\printbibliography
+
+
+\end{document}
