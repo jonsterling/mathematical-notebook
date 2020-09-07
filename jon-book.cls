@@ -122,29 +122,29 @@
 \RequirePackage[nameinlink,capitalize,noabbrev]{cleveref}
 
 
-\theoremstyle{definition}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{principle}[theorem]{Principle}
-\newtheorem{open-question}[theorem]{Open Question}
-\newtheorem{construction}[theorem]{Construction}
-\newtheorem{computation}[theorem]{Computation}
-\newtheorem{convention}[theorem]{Convention}
-\newtheorem{notation}[theorem]{Notation}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{slogan}[theorem]{Slogan}
-\newtheorem{note}[theorem]{Note}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{almost-example}[theorem]{Almost Example}
-\newtheorem{exercise}[theorem]{Exercise}
-\newtheorem{history}[theorem]{History}
-\newtheorem{fact}[theorem]{Fact}
-\newtheorem{observation}[theorem]{Observation}
-\newtheorem{intuition}[theorem]{Intuition}
+%\theoremstyle{definition}
+%\newtheorem{theorem}{Theorem}[section]
+%\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{conjecture}[theorem]{Conjecture}
+%\newtheorem{corollary}[theorem]{Corollary}
+%\newtheorem{proposition}[theorem]{Proposition}
+%\newtheorem{principle}[theorem]{Principle}
+%\newtheorem{open-question}[theorem]{Open Question}
+%\newtheorem{construction}[theorem]{Construction}
+%\newtheorem{computation}[theorem]{Computation}
+%\newtheorem{convention}[theorem]{Convention}
+%\newtheorem{notation}[theorem]{Notation}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{remark}[theorem]{Remark}
+%\newtheorem{slogan}[theorem]{Slogan}
+%\newtheorem{note}[theorem]{Note}
+%\newtheorem{example}[theorem]{Example}
+%\newtheorem{almost-example}[theorem]{Almost Example}
+%\newtheorem{exercise}[theorem]{Exercise}
+%\newtheorem{history}[theorem]{History}
+%\newtheorem{fact}[theorem]{Fact}
+%\newtheorem{observation}[theorem]{Observation}
+%\newtheorem{intuition}[theorem]{Intuition}
 
 
 %\makeatletter
@@ -235,4 +235,37 @@
 }
 
 \NewDocumentCommand\vertsep{}{\mathrel{\delimsep{\vert}}}
+
 \NewDocumentCommand\Ast{}{\textup{*}}
+
+\ExplSyntaxOn
+
+\cs_new:Npn \setup_para:cc #1 #2 {
+  \cs_set_eq:cc {old #1} {#1}
+  \cs_set:cpn {#1}{
+    \cs_set_eq:Nc \c@para {c@ #2}
+    \cs_set:Npn \thepara {\use:c {the #1}.\arabic{para}}
+    \use:c {old #1}
+  }
+}
+
+
+\newcounter{para}
+
+\NewDocumentEnvironment{para}{o}{
+  \stepcounter{para}
+  \vspace{3pt}
+  \noindent
+  \hspace{\parindent}
+  \textbf{(\thepara)}
+  \IfValueT{#1}{\ \emph{#1.}}
+  \hspace{.4em}
+}{
+  \vspace{3pt}
+}
+
+\setup_para:cc {chapter} {section}
+\setup_para:cc {section} {subsection}
+\setup_para:cc {subsection} {subsubsection}
+
+\ExplSyntaxOff

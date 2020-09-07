@@ -1,1 +1,154 @@
 \chapter{Functorial geometry}
+
+%\section{Commutative algebra}
+
+
+
+\NewDocumentCommand\Aff{}{\mathbf{Aff}}
+\NewDocumentCommand\AffFP{}{\mathbf{Aff}_{\textit{f.p.}}}
+\NewDocumentCommand\CRing{}{\mathbf{CRing}}
+\NewDocumentCommand\CRingLoc{}{\mathbf{CRing}_{\mathrm{Loc}}}
+\NewDocumentCommand\CRingFP{}{\mindelim{1}\mathbf{CRing}_{\textit{f.p.}}}
+\NewDocumentCommand\Spec{g}{\operatorname{Spec}\IfValueT{#1}{#1}}
+\NewDocumentCommand\Str{G{\bullet}}{\mathcal{O}_{#1}}
+\NewDocumentCommand\GS{g}{\Gamma\IfValueT{#1}{\prn{#1}}}
+
+\section{Commutative algebra and classifying topoi}
+
+We will write $\CRing$ for the category of (commutative) rings and $\CRingLoc$
+for the category of \emph{local rings}. Both of these theories are geometric,
+and therefore induce classifying topoi $\brk{\CRing},\brk{\CRingLoc}$
+respectively.
+
+\section{Affine schemes}
+
+\begin{para}
+  %
+  An \emph{affine scheme} is the formal dual of a commutative ring, i.e.\ an
+  object of the category $\Aff = \OpCat{\CRing}$. 
+ % When $A$ is a commutative
+ % ring, we will write $\Spec{A}$ for the corresponding affine scheme;
+ % conversely, when $X$ is an affine scheme, we write $\Str{X}$ for the
+ % corresponding commutative ring.
+  %
+\end{para}
+
+\begin{para}
+  A \emph{distinguished open immersion} of affine schemes is the dual to a
+  localization map $\Mor{A}{A\brk{f^{-1}}}$ of commutative rings for some $f \in A$.
+  %in which $Y \cong \Spec{\Str{X}\brk{f^{-1}}}$ for a function $f \in
+  %\Str{X}$. 
+\end{para}
+
+%\begin{definition}
+%  A finitely presented affine scheme is an object of the category $\AffFP = \OpCat{\CRingFP}$.
+%\end{definition}
+
+
+\section{Geometric spaces, affine and general}
+
+We begin with the classic perspective of schemes as locally ringed topoi.
+
+\begin{para}
+  %
+  A \emph{ringed topos} is a pair $\prn{\XTop,\Str{\XTop}}$ where $\XTop$ is a
+  topos and $\Str{\XTop}$ is a \emph{ring object} in $\Sh{\XTop}$, i.e.\ morphism of topoi
+  $\Mor{\XTop}{\brk{\CRing}}$.
+%
+  We will frequently abuse
+  notation by writing $\XTop$ for the pair $\prn{\XTop,\Str{\XTop}}$.
+
+  A morphism of ringed topoi
+  $\Mor{\prn{\XTop,\Str{\XTop}}}{\prn{\YTop,\Str{\YTop}}}$ is a morphism of
+  topoi $\Mor[f]{\XTop}{\YTop}$ together with a morphism of ring objects
+  $\Mor[f^\sharp]{f^*\Str{\YTop}}{\Str{\XTop}}$ called the \emph{comorphism}.
+  %
+\end{para}
+
+\begin{para}
+  From the algebraic perspective, the ``structure sheaf''
+  $\Mor[\Str{\XTop}]{\XTop}{\brk{\CRingLoc}}$ is a lex and cocontinuous functor
+  $\Mor[\Str{\XTop}^*]{\SET\brk{\CRingLoc}}{\Sh{\XTop}}$. Precomposing with the
+  Yoneda embedding, one obtains a functor $\Mor{\OpCat{\CRingFP}}{\Sh{\XTop}}$
+  that we shall also denote by $\Str{\XTop}^*$.
+\end{para}
+
+\begin{para}[Locally ringed topos]
+  %
+  A locally ringed topos is a ringed topos $\XTop$ such that $\Str{\XTop}$ is a
+  local ring, i.e.\ a ring object such that ``$\Str{\XTop}$ has a unique
+  maximal ideal'' holds in the internal logic of $\Sh{\XTop}$.
+
+  A morphism of locally ringed topoi is a morphism of ringed topoi
+  $\Mor[\prn{f,f^\sharp}]{\XTop}{\YTop}$ such that the induced naturality
+  squares for each distinguished open immersion is cartesian in $\Sh{\XTop}$,
+  fixing a finitely presented commutative ring $A$ and an element $a\in A$:
+  \[
+    \DiagramSquare{
+      nw/style = pullback,
+      nw = \prn{f^*\Str{\YTop}}^*{A},
+      sw = \prn{f^*\Str{\YTop}}^*\prn{A\brk{a^{-1}}},
+      ne = \Str{\XTop}^*{A},
+      se = \Str{\XTop}^*\prn{A\brk{a^{-1}}},
+      width = 3cm
+    }
+  \]
+  %
+\end{para}
+
+\subsection{The spectrum of a commutative ring}
+
+Let $A$ be a commutative ring, i.e.\ a morphism of topoi
+$\Mor{*}{\brk{\CRing}}$; then the \emph{geometric spectrum} of $A$ is the
+locally ringed topos defined by the following \emph{comma square} in the
+category of topoi:
+\[
+  \begin{tikzpicture}[diagram]
+    \SpliceDiagramSquare{
+      nw = \Spec{A},
+      ne = *,
+      se = \brk{\CRing},
+      sw = \brk{\CRingLoc},
+      west = \Str{\Spec{A}},
+      south/style = embedding,
+      east = A,
+      width = 2.5cm,
+      west/style = exists,
+    }
+    \node [between = nw and se,rotate = 45] {$\Leftarrow$};
+  \end{tikzpicture}
+\]
+
+From this definition, it can be seen that $\Spec{A}$ is the classifying topos
+of \emph{local $A$-algebras}.
+
+\begin{para}
+  %
+  The geometric spectrum \emph{is not} obtained as a (weak) pullback of topoi:
+  this would make $\Spec{A}$ a subtopos of the point, either the punctual topos
+  or the empty topos, depending on whether $A$ is a local ring --- since the
+  pullback would be the topoi classifying local rings that are isomorphic to
+  $A$!
+  %
+\end{para}
+
+
+
+\section{[My plan]}
+
+\begin{enumerate}
+  \item Define geometric schemes as locally ringed topoi covered by (geometric) affine schemes
+
+  \item Define big zariski topos, nerve / functor of points of a geometric scheme
+
+  \item Define open immersions into the functor of points, eliminating enough cuts to kill all references to geometric schemes
+
+  \item Define functorial schemes 
+\end{enumerate}
+
+%then the pair $\prn{\Pt,A}$ is obviously a
+%ringed topos, considering the fact that $\SET = \Sh{\Pt}$,    
+
+%We will write $\AFF = \OpCat{\CRing}$ for the category of \emph{affine
+%schemes}, the formal dual to the category of commutative rings.
+
