@@ -1,5 +1,7 @@
 \LoadClass[oneside,a4paper,11pt]{memoir}
 
+\RequirePackage{manfnt}
+
 \RequirePackage{minitoc}
 \nomtcrule
 \setlength{\mtcindent}{0pt}
@@ -122,54 +124,9 @@
 \RequirePackage[nameinlink,capitalize,noabbrev]{cleveref}
 
 
-%\theoremstyle{definition}
-%\newtheorem{theorem}{Theorem}[section]
-%\newtheorem{lemma}[theorem]{Lemma}
-%\newtheorem{conjecture}[theorem]{Conjecture}
-%\newtheorem{corollary}[theorem]{Corollary}
-%\newtheorem{proposition}[theorem]{Proposition}
-%\newtheorem{principle}[theorem]{Principle}
-%\newtheorem{open-question}[theorem]{Open Question}
-%\newtheorem{construction}[theorem]{Construction}
-%\newtheorem{computation}[theorem]{Computation}
-%\newtheorem{convention}[theorem]{Convention}
-%\newtheorem{notation}[theorem]{Notation}
-%\newtheorem{definition}[theorem]{Definition}
-%\newtheorem{remark}[theorem]{Remark}
-%\newtheorem{slogan}[theorem]{Slogan}
-%\newtheorem{note}[theorem]{Note}
-%\newtheorem{example}[theorem]{Example}
-%\newtheorem{almost-example}[theorem]{Almost Example}
-%\newtheorem{exercise}[theorem]{Exercise}
-%\newtheorem{history}[theorem]{History}
-%\newtheorem{fact}[theorem]{Fact}
-%\newtheorem{observation}[theorem]{Observation}
-%\newtheorem{intuition}[theorem]{Intuition}
 
+\Crefname{para}{}{}
 
-%\makeatletter
-%\NewDocumentCommand\updatetheoremprefixfor{m}{%
-%  \expandafter\expandafter\expandafter\let\expandafter\csname old#1\expandafter\endcsname\csname #1\endcsname
-%  \@namedef{#1}{\RenewDocumentCommand\thetheorem{}{\csname the#1\endcsname.\arabic{theorem}}
-%  \setcounter{theorem}{0}%
-%  \csname old#1\endcsname}}
-%\makeatother
-%
-%\updatetheoremprefixfor{chapter}
-%\updatetheoremprefixfor{section}
-%\updatetheoremprefixfor{subsection}
-%\updatetheoremprefixfor{subsubsection}
-%
-
-\Crefname{slogan}{Slogan}{Slogans}
-\Crefname{rule}{Rule}{Rules}
-\Crefname{req}{Requirement}{Requirements}
-\Crefname{principle}{Principle}{Principles}
-\Crefname{open-question}{Open Question}{Open Questions}
-\Crefname{diagram}{Diagram}{Diagrams}
-\Crefname{structure}{Structure}{Structures}
-\Crefname{intuition}{Intuition}{Intuitions}
-\Crefname{reduction}{Reduction}{Reductions}
 \allowdisplaybreaks%
 
 
@@ -244,7 +201,9 @@
   \cs_set_eq:cc {old #1} {#1}
   \cs_set:cpn {#1}{
     \cs_set_eq:Nc \c@para {c@ #2}
-    \cs_set:Npn \thepara {\use:c {the #1}.\arabic{para}}
+    \cs_set:Npn \thepara {
+      \textbf{\use:c {the #1}.\arabic{para}}
+    }
     \use:c {old #1}
   }
 }
@@ -253,7 +212,7 @@
 \newcounter{para}
 
 \NewDocumentEnvironment{para}{o}{
-  \stepcounter{para}
+  \refstepcounter{para}
   \vspace{3pt}
   \noindent
   \hspace{\parindent}
@@ -269,3 +228,5 @@
 \setup_para:cc {subsection} {subsubsection}
 
 \ExplSyntaxOff
+
+\newcommand{\danger}{\marginpar[\hfill\dbend]{\dbend\hfill}}

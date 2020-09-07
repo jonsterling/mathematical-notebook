@@ -73,7 +73,7 @@ We begin with the classic perspective of schemes as locally ringed topoi.
   that we shall also denote by $\Str{\XTop}^*$.
 \end{para}
 
-\begin{para}[Locally ringed topos]
+\begin{para}
   %
   A locally ringed topos is a ringed topos $\XTop$ such that $\Str{\XTop}$ is a
   local ring, i.e.\ a ring object such that ``$\Str{\XTop}$ has a unique
@@ -98,31 +98,69 @@ We begin with the classic perspective of schemes as locally ringed topoi.
 
 \subsection{The spectrum of a commutative ring}
 
-Let $A$ be a commutative ring, i.e.\ a morphism of topoi
-$\Mor{*}{\brk{\CRing}}$; then the \emph{geometric spectrum} of $A$ is the
-locally ringed topos defined by the following \emph{comma square} in the
-category of topoi:
-\[
-  \begin{tikzpicture}[diagram]
-    \SpliceDiagramSquare{
-      nw = \Spec{A},
-      ne = *,
-      se = \brk{\CRing},
-      sw = \brk{\CRingLoc},
-      west = \Str{\Spec{A}},
-      south/style = embedding,
-      east = A,
-      width = 2.5cm,
-      west/style = exists,
-    }
-    \node [between = nw and se,rotate = 45] {$\Leftarrow$};
-  \end{tikzpicture}
-\]
+\begin{para}\label{para:geometric-spectrum}
+  Let $A$ be a commutative ring, i.e.\ a morphism of topoi
+  $\Mor{*}{\brk{\CRing}}$; then the \emph{geometric spectrum} of $A$ is the
+  locally ringed topos defined by the following \emph{comma square} in the
+  category of topoi:
+  \[
+    \begin{tikzpicture}[diagram]
+      \SpliceDiagramSquare{
+        nw = \Spec{A},
+        ne = *,
+        se = \brk{\CRing},
+        sw = \brk{\CRingLoc},
+        west = \Str{\Spec{A}},
+        south/style = embedding,
+        east = A,
+        south = i,
+        width = 2.5cm,
+        west/style = exists,
+      }
+      \node [between = nw and se,rotate = 45] {$\Leftarrow$};
+    \end{tikzpicture}
+  \]
 
-From this definition, it can be seen that $\Spec{A}$ is the classifying topos
-of \emph{local $A$-algebras}.
+\end{para}
 
 \begin{para}
+  %
+  From \cref{para:geometric-spectrum}, it can be seen that $\Spec{A}$ is the
+  classifying topos of \emph{local $A$-algebras}. Let $\XTop$ be a topos; then
+  a morphism $\Mor{\XTop}{A}$ consists of a local ring
+  $\Mor[B]{\XTop}{\brk{\CRingLoc}}$ together with a homomorphism of rings
+  $\Mor[\alpha]{A_{\vert \XTop}}{i\circ B}$.
+  %
+  \[
+    \begin{tikzpicture}[diagram]
+      \SpliceDiagramSquare{
+        nw = \Spec{A},
+        ne = *,
+        se = \brk{\CRing},
+        sw = \brk{\CRingLoc},
+        west = \Str{\Spec{A}},
+        west/node/style = {gray,upright desc},
+        west/style= gray,
+        north/style = gray,
+        nw/style = gray,
+        ne/style = gray,
+        south/style = embedding,
+        east = A,
+        south = i,
+        width = 2.5cm,
+      }
+      \node [between = nw and se,xshift=-.3cm, yshift=.3cm,rotate = 45] {$\Leftarrow$};
+      \node [between = nw and se,xshift=-.1cm, yshift=.1cm,rotate = 45] {$\alpha$};
+      \node (nww) [above left = of nw] {$\XTop$};
+      \path[->,bend right = 30] (nww) edge node [left] {$B$} (sw);
+      \path[->,bend left = 30] (nww) edge (ne);
+      \path[->,gray] (nww) edge (nw);
+    \end{tikzpicture}
+  \]
+\end{para}
+
+\begin{para}
+  \danger
   %
   The geometric spectrum \emph{is not} obtained as a (weak) pullback of topoi:
   this would make $\Spec{A}$ a subtopos of the point, either the punctual topos
