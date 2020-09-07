@@ -217,7 +217,7 @@
   \noindent
   \hspace{\parindent}
   \textbf{(\thepara)}
-  \IfValueT{#1}{\ \emph{#1.}}
+  \IfValueT{#1}{\ {\emph{#1.}}}
   \hspace{.4em}
 }{
   \vspace{3pt}

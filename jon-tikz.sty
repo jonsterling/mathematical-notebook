@@ -4,6 +4,25 @@
 \usetikzlibrary{fit,positioning,calc}
 \RequirePackage{tikz-cd}
 
+\usetikzlibrary{decorations.markings}
+\pgfdeclarelayer{arrowlayer}
+\pgfsetlayers{main,arrowlayer}
+
+\tikzset{
+  two cell/.style = {
+    decoration={
+      markings,mark=at position 1 with {
+        \begin{pgfonlayer}{arrowlayer}
+          \arrow{To}
+        \end{pgfonlayer}
+      }
+    },
+    double equal sign distance, shorten >= 1.5pt,
+    preaction = {decorate},
+    postaction = {draw,line width=1.4pt, white,shorten >= -.5pt, shorten <= -.5pt}
+  },
+}
+
 \tikzset{
   desc/.style={sloped, fill=white,inner sep=2pt},
   upright desc/.style={fill=white,inner sep=2pt},
@@ -63,9 +82,9 @@
   exists/.style = {
     densely dotted
   },
-  two cell/.style = {
-    commutative diagrams/double line, -Implies
-  },
+  mute/.style = {
+    color = black!20,
+  }
 }
 
 \newlength{\dontworryaboutit}
