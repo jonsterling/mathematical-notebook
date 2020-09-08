@@ -33,6 +33,13 @@
       }
     }
   },
+  pullback/.style args={#1} {
+    append after command={
+      \pgfextra{
+        \draw[#1] ($(\tikzlastnode) + (.2cm,-.5cm)$) -- ++(0.3cm,0) -- ++(0,0.3cm);
+      }
+    }
+  },
   dotted pullback/.style = {
     append after command={
       \pgfextra{

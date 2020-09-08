@@ -1,3 +1,5 @@
+\nocite{eisenbud-harris:2000}
+
 \chapter{Functorial geometry}
 \minitoc
 
@@ -173,7 +175,7 @@ of rings are assumed to preserve $1$.
 %\end{definition}
 
 
-\section{Geometric spaces, affine and general}
+\section{Geometric schemes, affine and general}
 
 We begin with the classic perspective of schemes as locally ringed topoi.
 
@@ -244,77 +246,128 @@ We begin with the classic perspective of schemes as locally ringed topoi.
   which is the same as $f^\sharp$ being a local ring map.
 \end{para}
 
-\subsection{The spectrum of a commutative ring}
-
-\begin{para}\label{para:geometric-spectrum}
-  Let $A$ be a commutative ring, i.e.\ a morphism of topoi
-  $\Mor{*}{\brk{\Ring}}$; then the \emph{geometric spectrum} of $A$ is the
-  locally ringed topos defined by the following \emph{comma square} in the
-  category of topoi:
-  \[
-    \begin{tikzpicture}[diagram]
-      \SpliceDiagramSquare{
-        nw = \Spec{A},
-        ne = *,
-        se = \brk{\Ring},
-        sw = \brk{\RingLoc},
-        west = \Str{\Spec{A}},
-        south/style = embedding,
-        east = A,
-        south = i,
-        width = 2.5cm,
-        west/style = exists,
-      }
-      \draw[two cell] (ne) to[bend right=10] node [midway] {$$} (sw);
-    \end{tikzpicture}
-  \]
-
-\end{para}
-
-\begin{para}
-  %
-  From \cref{para:geometric-spectrum}, it can be seen that $\Spec{A}$ is the
-  classifying topos of \emph{local $A$-algebras}. Let $\XTop$ be a topos; then
-  a morphism $\Mor{\XTop}{A}$ consists of a local ring
-  $\Mor[B]{\XTop}{\brk{\RingLoc}}$ together with a homomorphism of rings
-  $\Mor[\alpha]{A_{\vert \XTop}}{i\circ B}$.
-  %
-  \[
-    \begin{tikzpicture}[diagram]
-      \SpliceDiagramSquare{
-        nw = \Spec{A},
-        ne = *,
-        se = \brk{\Ring},
-        sw = \brk{\RingLoc},
-        west = \Str{\Spec{A}},
-        west/node/style = {mute,upright desc},
-        west/style= mute,
-        north/style = mute,
-        nw/style = mute,
-        south/style = embedding,
-        east = A,
-        south = i,
-        width = 2.5cm,
-      }
-      \node (nww) [above left = of nw] {$\XTop$};
-      \path[->,bend right = 30] (nww) edge coordinate [xshift = 1mm, yshift = 1mm] (l-ctr) node [left] {$B$} (sw);
-      \path[->,bend left = 30] (nww) edge coordinate [xshift = -1mm, yshift = -1mm] (r-ctr) (ne);
-      \path[->,mute] (nww) edge (nw);
-      \draw[two cell] (r-ctr) to[bend left=30] node [midway,sloped,below] {$\alpha$} (l-ctr);
-    \end{tikzpicture}
-  \]
-\end{para}
-
-\begin{para}
-  \danger
-  %
-  The geometric spectrum \emph{is not} obtained as a (weak) pullback of topoi:
-  this would make $\Spec{A}$ a subtopos of the point, either the punctual topos
-  or the empty topos, depending on whether $A$ is a local ring --- since the
-  pullback would be the topoi classifying local rings that are isomorphic to
-  $A$!
-  %
-\end{para}
+% \subsection{The spectrum of a commutative ring}
+% 
+% \begin{para}\label{para:geometric-spectrum}
+%   Let $A$ be a commutative ring, i.e.\ a morphism of topoi
+%   $\Mor{*}{\brk{\Ring}}$; then the \emph{geometric spectrum} of $A$ is the
+%   locally ringed topos defined by the following \emph{comma square} in the
+%   category of topoi:
+%   \[
+%     \begin{tikzpicture}[diagram]
+%       \SpliceDiagramSquare{
+%         nw/style = {pullback=<-},
+%         nw = \Spec{A},
+%         ne = *,
+%         se = \brk{\Ring},
+%         sw = \brk{\RingLoc},
+%         west = \Str{\Spec{A}},
+%         south/style = embedding,
+%         east = A,
+%         south = i,
+%         width = 2.5cm,
+%         west/style = exists,
+%       }
+%       \draw[two cell] (ne) to[bend right=10] node [midway] {$$} (sw);
+%     \end{tikzpicture}
+%   \]
+% 
+% \end{para}
+% 
+% \begin{para}
+%   %
+%   From \cref{para:geometric-spectrum}, it can be seen that $\Spec{A}$ is the
+%   classifying topos of \emph{local $A$-algebras}. Let $\XTop$ be a topos; then
+%   a morphism $\Mor{\XTop}{A}$ consists of a local ring
+%   $\Mor[B]{\XTop}{\brk{\RingLoc}}$ together with a homomorphism of rings
+%   $\Mor[\alpha]{A_{\vert \XTop}}{i\circ B}$.
+%   %
+%   \[
+%     \begin{tikzpicture}[diagram]
+%       \SpliceDiagramSquare{
+%         nw = \Spec{A},
+%         ne = *,
+%         se = \brk{\Ring},
+%         sw = \brk{\RingLoc},
+%         west = \Str{\Spec{A}},
+%         west/node/style = {mute,upright desc},
+%         west/style= mute,
+%         north/style = mute,
+%         nw/style = {pullback = {<-,mute},mute},
+%         south/style = embedding,
+%         east = A,
+%         south = i,
+%         width = 2.5cm,
+%       }
+%       \node (nww) [above left = of nw] {$\XTop$};
+%       \path[->,bend right = 30] (nww) edge coordinate [xshift = 1mm, yshift = 1mm] (l-ctr) node [left] {$B$} (sw);
+%       \path[->,bend left = 30] (nww) edge coordinate [xshift = -1mm, yshift = -1mm] (r-ctr) (ne);
+%       \path[->,mute] (nww) edge (nw);
+%       \draw[two cell] (r-ctr) to[bend right=20] node [midway,sloped,below] {$\alpha$} (l-ctr);
+%     \end{tikzpicture}
+%   \]
+% \end{para}
+% 
+% \begin{para}
+%   \danger
+%   %
+%   The geometric spectrum \emph{is not} obtained as a (weak) pullback of topoi:
+%   this would make $\Spec{A}$ a subtopos of the point, either the punctual topos
+%   or the empty topos, depending on whether $A$ is a local ring --- since the
+%   pullback would be the topoi classifying local rings that are isomorphic to
+%   $A$!
+%   %
+% \end{para}
+% 
+% \begin{para}
+%   %
+%   Let $\Mor{A}{B}$ be a morphism of rings; we will show that this gives rise to
+%   a morphism of topoi $\Mor{\Spec{B}}{\Spec{A}}$ using the universal property
+%   of the comma square. First, consider the pasting of the morphism $\Mor{A}{B}$
+%   with the 2-cell of the defining comma square for $\Spec{B}$:
+%   \[
+%     \begin{tikzpicture}[diagram]
+%       \node [pullback = <-] (nw) {$\Spec{B}$};
+%       \node (ne) [right = 3cm of nw] {$\Pt$};
+%       \node (sw) [below = of nw] {$\brk{\RingLoc}$};
+%       \node (se) [below = of ne] {$\brk{\Ring}$};
+%       \path[->] (nw) edge coordinate [xshift=4mm] (StrB) node [left] {$\Str{\Spec{B}}$} (sw);
+%       \path[embedding] (sw) edge node [below] {$i$} (se);
+%       \path[->] (nw) edge (ne);
+%       \path[->,bend right = 30] (ne) edge coordinate [xshift = 1mm] (B) node [left] {$B$} (se);
+%       \path[->,bend left = 30] (ne) edge coordinate [xshift = -1mm] (A) node [right] {$A$} (se);
+%       \draw[two cell] (A) to[bend right = 30] (B);
+%       \draw[two cell] (ne) to[bend right=10] (sw);
+%     \end{tikzpicture}
+%   \]
+% 
+%   From the composite 2-cell, we have desired morphism of topoi:
+%   \[
+%     \begin{tikzpicture}[diagram]
+%       \SpliceDiagramSquare{
+%         nw = \Spec{A},
+%         ne = *,
+%         se = \brk{\Ring},
+%         sw = \brk{\RingLoc},
+%         west = \Str{\Spec{A}},
+%         west/node/style = {upright desc},
+%         nw/style = {pullback = <-},
+%         south/style = embedding,
+%         east = A,
+%         south = i,
+%         width = 2.5cm,
+%       }
+%       \node (nww) [above left = of nw] {$\Spec{B}$};
+%       \path[->,bend right = 30] (nww) edge coordinate [xshift = 1mm, yshift = 1mm] (l-ctr) node [left] {$\Str{\Spec{B}}$} (sw);
+%       \path[->,bend left = 30] (nww) edge coordinate [xshift = -1mm, yshift = -1mm] (r-ctr) (ne);
+%       \path[->] (nww) edge (nw);
+%       \draw[two cell] (r-ctr) to[bend right=20] node [midway,sloped,above,] {$\simeq$} (nw);
+%       \draw[two cell] (nw) to[bend right=20] node [midway,sloped,above,] {$\simeq$} (l-ctr);
+%       \draw[two cell] (ne) to[bend right=10] (sw);
+%     \end{tikzpicture}
+%   \]
+%   %
+% \end{para}
 
 
 
