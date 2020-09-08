@@ -255,36 +255,54 @@ We begin with the classic perspective of schemes as locally ringed topoi.
 \begin{para}\label{para:prime-ideal-localization}
   Given a prime ideal $\frk{a}\subseteq
   A$ of a ring $A$, one may form the localization $\Mor{A}{A_\frk{p}}$ where $A_{\frk{p}} =
-  A\brk{\Inv*{A\setminus\frk{a}}}$ (which is a local ring).
+  A\brk{\Inv*{A\setminus\frk{p}}}$ (which is a local ring).
 \end{para}
 
 
-\begin{para}
+\begin{para}\label{para:spec-underlying-space}
   %
   Consider the geometric theory of a ring equipped with a prime ideal; this
   gives rise to a projection of classifying topoi
   $\Mor{\brk{\PrimeIdl}}{\brk{\Ring}}$. The fiber of $\brk{\PrimeIdl}$ over a
-  ring $A$ is then classifying topos of prime ideals of $A$.
+  ring $A$ is then classifying topos of prime ideals of $A$, the underlying space of the \emph{spectrum} of $A$.
+\end{para}
+
+\begin{para}\label{para:localization-geom-mor}
+  %
+  We will exhibit a morphism of topoi $\Mor{\brk{\PrimeIdl}}{\brk{\RingLoc}}$
+  that takes a ring equipped with a prime ideal $\frk{p}\subseteq{A}$ to the
+  local ring $A_\frk{p}$. Such a morphism is nothing more than a local ring
+  defined in the internal type theory of the classifying topos of prime ideals!
+  The localization at a prime makes sense in any topos, so we simply take the
+  generic ring equipped with a prime ideal $\prn{U,\frk{p}}$ of
+  $\SET\brk{\PrimeIdl}$ to the local ringcr$U_{\frk{p}}$.
+  %
 \end{para}
 
 \begin{para}
-  Accordingly, we form underlying space of the \emph{spectrum} of a ring as the following pullback:
+  The \emph{spectrum} of a ring is the locally ringed topos defined below using \cref{para:spec-underlying-space,para:localization-geom-mor}.
   \[
-    \DiagramSquare{
-      nw/style = pullback,
-      nw = \Spec{A},
-      ne = \brk{\PrimeIdl},
-      se = \brk{\Ring},
-      sw = \Pt,
-      south = A,
-      width = 2.5cm,
-    }
+    \begin{tikzpicture}[diagram]
+      \SpliceDiagramSquare{
+        nw/style = pullback,
+        nw = \Spec{A},
+        ne = \brk{\PrimeIdl},
+        se = \brk{\Ring},
+        sw = \Pt,
+        south = A,
+        width = 2.5cm,
+      }
+      \node (nee) [above = 2.5cm of ne] {$\RingLoc$};
+      \path[->] (ne) edge (nee);
+      \path[->,bend left = 20] (nw) edge node [sloped,above] {$\Str{\Spec{A}}$} (nee);
+    \end{tikzpicture}
   \]
 
   We see that this assignment is contravariantly functorial, arguing that a
   morphism of rings $\Mor{A}{B}$ sends a prime ideal of $B$ to a prime ideal of
   $A$ under inverse image. 
 \end{para}
+
 
 \begin{para}
   %
