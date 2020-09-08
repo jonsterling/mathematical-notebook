@@ -17,7 +17,7 @@
 }
 \ExplSyntaxOff
 
-\NewDocumentCommand\AlxTop{m}{\mathbb{B}\prn{#1}}
+\NewDocumentCommand\AlxTop{sm}{\mathbb{B}\IfBooleanTF{#1}{\prn{#2}}{#2}}
 
 \NewDocumentCommand\ObjInit{g}{\emptyset\IfValueT{#1}{_{#1}}}
 \NewDocumentCommand\ObjTerm{g}{\mathbf{1}\IfValueT{#1}{_{#1}}}
@@ -53,6 +53,7 @@
 \NewDocumentCommand\ThCat{}{\mathbb{T}}
 \NewDocumentCommand\SET{}{\mathbf{Set}}
 \NewDocumentCommand\CAT{}{\mathbf{Cat}}
+\NewDocumentCommand\CoPsh{m}{\mathrm{CoPr}\prn{#1}}
 \NewDocumentCommand\Psh{m}{\mathrm{Pr}\prn{#1}}
 \NewDocumentCommand\PrTop{m}{\widehat{#1}}
 \NewDocumentCommand\Sh{m}{\mathrm{Sh}\prn{#1}}
