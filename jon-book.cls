@@ -93,7 +93,7 @@
 \RequirePackage{hyperref}
 \hypersetup{breaklinks=true,colorlinks=true,linkcolor=black,urlcolor=Matterhorn, citecolor=black}
 
-\RequirePackage[backend=biber,natbib=true, doi=true, citestyle=alphabetic, backref=true, style=alphabetic, maxnames=1000, mincrossrefs=99]{biblatex}
+\RequirePackage[backend=biber,natbib=true, doi=true, citestyle=alphabetic, backref=true, sortcites=true, style=alphabetic, maxnames=1000, mincrossrefs=99]{biblatex}
 \setcounter{biburlnumpenalty}{9000}
 \setcounter{biburlucpenalty}{9000}
 \setcounter{biburllcpenalty}{9000}
