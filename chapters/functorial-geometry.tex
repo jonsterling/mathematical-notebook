@@ -9,6 +9,7 @@
 
 \NewDocumentCommand\Inv{sm}{\IfBooleanTF{#1}{\prn{#2}}{#2}^{-1}}
 \NewDocumentCommand\Aff{}{\mathbf{Aff}}
+\NewDocumentCommand\Sch{}{\mathbf{Sch}}
 \NewDocumentCommand\AffFP{}{\mathbf{Aff}_{\textit{f.p.}}}
 \NewDocumentCommand\Ring{}{\mathbf{Ring}}
 \NewDocumentCommand\LocRing{}{\mathbf{Ring}_{\mathrm{Loc}}}
@@ -179,7 +180,9 @@ of rings are assumed to preserve $1$.
 
 \section{Geometric schemes, affine and general}
 
-We begin with the classic perspective of schemes as locally ringed topoi.
+We present the classic perspective of schemes as locally ringed topoi.
+
+\subsection{Locally ringed topoi}
 
 \begin{para}
   %
@@ -247,6 +250,15 @@ We begin with the classic perspective of schemes as locally ringed topoi.
   $\Str{\XTop}$ if and only if it was already a unit in $f^*\Str{\YTop}$ ---
   which is the same as $f^\sharp$ being a local ring map.
 \end{para}
+
+\begin{para}
+  %
+  An open immersion of locally ringed topoi is one of the form
+  $\EmbMor[j]{\YTop}{\XTop}$ such that underlying morphism of topoi is an open
+  immersion, and $\Spec{\YTop} \cong j^*\Spec{\XTop}$.
+  %
+\end{para}
+
 
 
 
@@ -466,14 +478,22 @@ We begin with the classic perspective of schemes as locally ringed topoi.
   %
 \end{para}
 
-\begin{para}
-  %
-  A \emph{distinguished open immersion} of affine schemes is a morphism of the
-  form $\Mor[D\prn{a}]{\Spec{A\brk{\Inv{a}}}}{\Spec{A}}$ for some element $a \in A$.
-  %
-\end{para}
+%\begin{para}
+%  %
+%  A \emph{distinguished open immersion} of affine schemes is a morphism of the
+%  form $\Mor[D\prn{a}]{\Spec{A\brk{\Inv{a}}}}{\Spec{A}}$ for some element $a \in A$.
+%  %
+%\end{para}
+
+\NewDocumentCommand\Sub{m}{\mathbf{Sub}\prn{#1}}
 
 \begin{para}
+  %
+  Let $\XTop$ be a locally ringed topos. $\XTop$ is a called a \emph{scheme}
+  when there exists a set of open immersions $\EmbMor{\XTop_{U_i}}{\XTop}$ such
+  that $\bigvee U_i=\top$ and each $\XTop_{U_i}$ is affine. We define $\Sch$ to
+  be the full subcategory of $\LocRingedTOP$ spanned by schemes.
+  %
 \end{para}
 
 
