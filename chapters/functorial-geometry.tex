@@ -487,15 +487,20 @@ We present the classic perspective of schemes as locally ringed topoi.
 
 \NewDocumentCommand\Sub{m}{\mathbf{Sub}\prn{#1}}
 
-\begin{para}
+\begin{para}\label{para:geometric-scheme}
   %
   Let $\XTop$ be a locally ringed topos. $\XTop$ is a called a \emph{scheme}
   when there exists a set of open immersions $\EmbMor{\XTop_{U_i}}{\XTop}$ such
-  that $\bigvee U_i=\top$ and each $\XTop_{U_i}$ is affine. We define $\Sch$ to
-  be the full subcategory of $\LocRingedTOP$ spanned by schemes.
+  that $\bigvee U_i=\top$ and each $\XTop_{U_i}$ is affine; in particular,
+  every affine scheme is a scheme. We define $\Sch$ to be the full subcategory
+  of $\LocRingedTOP$ spanned by schemes.
   %
 \end{para}
 
+
+\section{The functor of points}
+
+%%% I was going to use the big zariski topos as a place where schemes live, but this will only end up being faithful for finitely presented schemes. One has to use a weirder topos, classifying formal filtered colimits of local rings, in order to get something big enough.
 
 
 \clearpage
