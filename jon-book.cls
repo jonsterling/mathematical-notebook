@@ -90,8 +90,8 @@
   shrink=10
 }
 
-\RequirePackage{hyperref}
-\hypersetup{breaklinks=true,colorlinks=true,linkcolor=black,urlcolor=Matterhorn, citecolor=black}
+%\RequirePackage{hyperref}
+%\hypersetup{breaklinks=true,colorlinks=true,linkcolor=black,urlcolor=Matterhorn, citecolor=black}
 
 \RequirePackage[backend=biber,natbib=true, doi=true, citestyle=alphabetic, backref=true, sortcites=true, style=alphabetic, maxnames=1000, mincrossrefs=99]{biblatex}
 \setcounter{biburlnumpenalty}{9000}
