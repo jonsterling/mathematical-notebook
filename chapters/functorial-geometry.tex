@@ -31,7 +31,8 @@ direction than most expositions.
 
 I am testing the hypothesis that if one allows oneself the ``forbidden
 knowledge'' of approximately two semesters of topos theory, a number of things
-become easier and less technical. These notes owe a lot to \citet{blechschmidt:2017}.
+become easier and less technical. These notes owe a lot in particular to
+\citet{blechschmidt:2017,johnstone:1977,lurie:dag:5}.
 
 
 \section{Topos theoretic preliminaries}
@@ -262,7 +263,7 @@ We present the classic perspective of schemes as locally ringed topoi.
 
 
 
-\NewDocumentCommand\PrFlt{}{\mathbf{PrFlt}}
+\NewDocumentCommand\Prime{}{\mathbf{Prime}}
 
 \subsection{The spectrum of a commutative ring}\label{sec:geometric-spectrum}
 
@@ -270,11 +271,11 @@ We present the classic perspective of schemes as locally ringed topoi.
   %
   Consider the geometric theory of a ring equipped with a prime filter (the
   complement of a prime ideal); this gives rise to a projection of classifying
-  topoi $\Mor{\brk{\PrFlt}}{\brk{\Ring}}$. In the category of sets, prime
+  topoi $\Mor{\brk{\Prime}}{\brk{\Ring}}$. In the category of sets, prime
   filters and prime ideals are interchangeable by taking complements; in a
   general topos, they may not coincide and prime filters are the correct notion
   (in an arbitrary topos, one can localize at a prime filter to obtain a local
-  ring). The fiber of $\brk{\PrFlt}$ over a ring $A$ is then the classifying
+  ring). The fiber of $\brk{\Prime}$ over a ring $A$ is then the classifying
   topos of prime filters of $A$, the underlying space of the \emph{spectrum} of
   $A$.
   %
@@ -282,13 +283,13 @@ We present the classic perspective of schemes as locally ringed topoi.
 
 \begin{para}\label{para:localization-geom-mor}
   %
-  We will exhibit a morphism of topoi $\Mor{\brk{\PrFlt}}{\brk{\LocRing}}$
+  We will exhibit a morphism of topoi $\Mor{\brk{\Prime}}{\brk{\LocRing}}$
   that takes a ring equipped with a prime filter $S \subseteq{A}$ to the
   local ring $A\brk{\Inv{S}}$. Such a morphism is nothing more than a local ring
   defined in the internal type theory of the classifying topos of prime filters!
   The localization at a prime makes sense in any topos, so we simply take the
   generic ring equipped with a prime filter $\prn{U,S}$ of
-  $\SET\brk{\PrFlt}$ to the local ring $U\brk{\Inv{S}}$.
+  $\SET\brk{\Prime}$ to the local ring $U\brk{\Inv{S}}$.
   %
 \end{para}
 
@@ -299,7 +300,7 @@ We present the classic perspective of schemes as locally ringed topoi.
       \SpliceDiagramSquare{
         nw/style = pullback,
         nw = \Spec{A},
-        ne = \brk{\PrFlt},
+        ne = \brk{\Prime},
         se = \brk{\Ring},
         sw = \Pt,
         south = A,
@@ -322,7 +323,7 @@ We present the classic perspective of schemes as locally ringed topoi.
   Classically, the spectrum of a ring is a locally ringed topological space
   $\Spec{A}$ and the topos we have constructed here is called the \emph{little
   Zariski topos} of $A$. We prefer to speak of our topos as the spectrum, and
-  refer to $\Sh{\Spec{A}} = \SET\brk{\PrFlt\prn{A}}$ as the \emph{little Zariski logos} of $A$.
+  refer to $\Sh{\Spec{A}} = \SET\brk{\Prime\prn{A}}$ as the \emph{little Zariski logos} of $A$.
   %
 \end{para}
 
