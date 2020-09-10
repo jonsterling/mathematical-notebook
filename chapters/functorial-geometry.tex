@@ -333,18 +333,18 @@ We present the classic perspective of schemes as locally ringed topoi.
 
 \begin{para}\label{para:big-zariski}
   Let $A$ be a commutative ring, i.e.\ a morphism of topoi
-  $\Mor{*}{\brk{\Ring}}$; then the \emph{geometric spectrum} of $A$ is the
+  $\Mor{*}{\brk{\Ring}}$; then the \emph{big Zariski topos} of $\Spec{A}$ is the
   locally ringed topos defined by the following \emph{comma square} in the
   category of topoi:
   \[
     \begin{tikzpicture}[diagram]
       \SpliceDiagramSquare{
         nw/style = {pullback=<-},
-        nw = \Zar{A},
+        nw = \Zar{\Spec{A}},
         ne = *,
         se = \brk{\Ring},
         sw = \brk{\LocRing},
-        west = \Str{\Zar{A}},
+        west = \Str{\Zar{\Spec{A}}},
         south/style = embedding,
         east = A,
         south = i,
@@ -358,7 +358,7 @@ We present the classic perspective of schemes as locally ringed topoi.
 
 \begin{para}
   %
-  From \cref{para:big-zariski}, it can be seen that $\Zar{A}$ is the
+  From \cref{para:big-zariski}, it can be seen that $\Zar{\Spec{A}}$ is the
   classifying topos of \emph{local $A$-algebras}. Let $\XTop$ be a topos; then
   a morphism $\Mor{\XTop}{A}$ consists of a local ring
   $\Mor[B]{\XTop}{\brk{\LocRing}}$ together with a homomorphism of rings
@@ -367,11 +367,11 @@ We present the classic perspective of schemes as locally ringed topoi.
   \[
     \begin{tikzpicture}[diagram]
       \SpliceDiagramSquare{
-        nw = \Zar{A},
+        nw = \Zar{\Spec{A}},
         ne = *,
         se = \brk{\Ring},
         sw = \brk{\LocRing},
-        west = \Str{\Zar{A}},
+        west = \Str{\Zar{\Spec{A}}},
         west/node/style = {mute,upright desc},
         west/style= mute,
         north/style = mute,
@@ -394,7 +394,7 @@ We present the classic perspective of schemes as locally ringed topoi.
   \danger
   %
   The big Zariski topos \emph{is not} obtained as a (weak) pullback of topoi:
-  this would make $\Zar{A}$ a subtopos of the point, either the punctual topos
+  this would make $\Zar{\Spec{A}}$ a subtopos of the point, either the punctual topos
   or the empty topos, depending on whether $A$ is a local ring --- since the
   pullback would be the topoi classifying local rings that are isomorphic to
   $A$!
@@ -406,16 +406,16 @@ We present the classic perspective of schemes as locally ringed topoi.
 \begin{para}
   %
   Let $\Mor{A}{B}$ be a morphism of rings; we will show that this gives rise to
-  a morphism of topoi $\Mor{\Zar{B}}{\Zar{A}}$ using the universal property
+  a morphism of topoi $\Mor{\Zar{\Spec{B}}}{\Zar{\Spec{A}}}$ using the universal property
   of the comma square. First, consider the pasting of the morphism $\Mor{A}{B}$
-  with the 2-cell of the defining comma square for $\Zar{B}$:
+  with the 2-cell of the defining comma square for $\Zar{\Spec{B}}$:
   \[
     \begin{tikzpicture}[diagram]
-      \node [pullback = <-] (nw) {$\Zar{B}$};
+      \node [pullback = <-] (nw) {$\Zar{\Spec{B}}$};
       \node (ne) [right = 3cm of nw] {$\Pt$};
       \node (sw) [below = of nw] {$\brk{\LocRing}$};
       \node (se) [below = of ne] {$\brk{\Ring}$};
-      \path[->] (nw) edge coordinate [xshift=4mm] (StrB) node [left] {$\Str{\Zar{B}}$} (sw);
+      \path[->] (nw) edge coordinate [xshift=4mm] (StrB) node [left] {$\Str{\Zar{\Spec{B}}}$} (sw);
       \path[embedding] (sw) edge node [below] {$i$} (se);
       \path[->] (nw) edge (ne);
       \path[->,bend right = 30] (ne) edge coordinate [xshift = 1mm] (B) node [left] {$B$} (se);
@@ -429,20 +429,20 @@ We present the classic perspective of schemes as locally ringed topoi.
   \[
     \begin{tikzpicture}[diagram]
       \SpliceDiagramSquare{
-        nw = \Zar{A},
+        nw = \Zar{\Spec{A}},
         ne = *,
         se = \brk{\Ring},
         sw = \brk{\LocRing},
-        west = \Str{\Zar{A}},
+        west = \Str{\Zar{\Spec{A}}},
         west/node/style = {upright desc},
         nw/style = {pullback = <-},
         south/style = embedding,
         east = A,
         south = i,
-        width = 2.5cm,
+        width = 3.5cm,
       }
-      \node (nww) [above left = of nw] {$\Zar{B}$};
-      \path[->,bend right = 30] (nww) edge coordinate [xshift = 1mm, yshift = 1mm] (l-ctr) node [left] {$\Str{\Zar{B}}$} (sw);
+      \node (nww) [above left = 2.5cm of nw] {$\Zar{\Spec{B}}$};
+      \path[->,bend right = 30] (nww) edge coordinate [xshift = 1mm, yshift = 1mm] (l-ctr) node [left] {$\Str{\Zar{\Spec{B}}}$} (sw);
       \path[->,bend left = 30] (nww) edge coordinate [xshift = -1mm, yshift = -1mm] (r-ctr) (ne);
       \path[->] (nww) edge (nw);
       \draw[two cell] (r-ctr) to[bend right=20] node [midway,sloped,above,] {$\simeq$} (nw);
@@ -499,6 +499,20 @@ We present the classic perspective of schemes as locally ringed topoi.
 
 
 \section{The functor of points}
+
+\subsection{The logos of algebraic spaces}
+
+\begin{para}
+  \danger
+  %
+  One is tempted to use the logos of sheaves on the big Zariski topos
+  $\Zar{\Spec{\mathbb{Z}}}$, the classifier of local rings, as a target for the
+  functor of points. This is not a good idea, because the full category of
+  schemes does not embed fully faithfully into $\Sh{\Zar{\Spec{\mathbb{Z}}}}$
+  --- only some sufficiently finitary schemes. Instead, we need a logos whose
+  \emph{sheaves} are some kind of generalized schemes. 
+  %
+\end{para}
 
 %%% I was going to use the big zariski topos as a place where schemes live, but this will only end up being faithful for finitely presented schemes. One has to use a weirder topos, classifying formal filtered colimits of local rings, in order to get something big enough.
 
