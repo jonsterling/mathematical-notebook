@@ -609,7 +609,7 @@ We present the classic perspective of schemes as locally ringed topoi.
 \begin{para}
   %
   Let $\XTop=\Spec{A}$ be a geometric affine scheme; if $U\subseteq A$ is a
-  subset of $A$ that generates the unit ideal, then the corresponding family of
+  finite subset of $A$ that generates the unit ideal, then the corresponding family of
   open immersions $\brc{\EmbMor{\Spec{A\brk{\Inv{a}}}}{\Spec{A}}\vertsep a\in U}$
   induced by localizing at each $a\in U$ is called a \emph{Zariski open cover}
   of $\XTop$. The resulting \emph{Zarisi coverage} on $\OpCat{\Ring}$ is written $K$.
@@ -649,38 +649,40 @@ We present the classic perspective of schemes as locally ringed topoi.
   \]
 \end{para}
 
-\begin{para}
-  Let $\Mor[f]{E}{F}$ be a Zariski local cover in $\FunPreSp$, and consider the image factorization:
-  \[
-    \begin{tikzpicture}[diagram]
-      \node (E) {$E$};
-      \node (F) [right = 2.5cm of E] {$F$};
-      \node (Im) [between = E and F, yshift = -1.5cm] {$\operatorname{Im}f$};
-      \path[->] (E) edge node [above] {$f$} (F);
-      \path[->>] (E) edge node [sloped,below] {$e_f$} (Im);
-      \path[>->] (Im) edge node [sloped,below] {$i_f$} (F);
-    \end{tikzpicture}
-  \]
+\begin{para}\label{para:zariski-local-system}
+  The collection of Zariski local covers is a system of local covers in the following sense:
+  \begin{enumerate}
+    \item Every cover is a Zariski local cover.
+    \item The Zariski local covers satisfy the 3-for-2 property.
+    \item A morphism $\Mor{E}{F}$ is a Zariski local cover if and only if for each $\Spec{A}$-valued point of $F$, the pullback $\Mor{E\times_{F}\FPts{\Spec{A}}}{\FPts{\Spec{A}}}$ is a Zariski local cover.
+  \end{enumerate}
+\end{para}
 
-  If $\Mor[f]{E}{F}$ was already a cover, then
-  $\Mor|>->|[i_f]{\operatorname{Im}f}{F}$ would be an isomorphism, and vice
-  versa; therefore, a presheaf that treats $f$ as a cover is the same as one
-  that treats $i_f$ as an isomorphism. Therefore, we will use the term
-  \emph{Zariski local isomorphism} to refer to any morphism of the form
-  $\Mor|>->|{\operatorname{Im}f}{F}$ where $\Mor[f]{E}{B}$ is a Zariski local
-  cover.
+
+\begin{para}
+  %
+  A \emph{Zariski dense monomorphism} is a Zarizki local cover that is at the
+  same time a monomorphism in $\FunPreSp$. In particular, a \emph{Zariski
+  covering sieve} is a Zariski dense monomorphism of the form
+  $\Mor|>->|{U}{\FPts{\Spec{A}}}$. The dense monomorphisms are maps that will
+  become isomorphisms under localization; dense monomorphisms are not the only
+  maps that will become isomorphisms, because some non-monomorphisms may become
+  morphisms as well.
+  %
 \end{para}
 
 \begin{para}
-  A presheaf $X$ is called a \emph{space} when it has the unique right lifting
-  property with respect to any Zariski local isomorphism $\Mor[i_f]{\operatorname{Im}{f}}{F}$:
+  %
+  A presheaf $X$ is called a \emph{space} when it is right orthogonal to any
+  Zariski dense monomorphism, or (without loss of generality) any Zariski
+  covering sieve $\Mor|>->|{U}{\FPts{\Spec{A}}}$.
+  %
   \[
     \begin{tikzpicture}[diagram]
       \SpliceDiagramSquare{
-        nw = \operatorname{Im}{f},
-        sw = F,
+        nw = U,
+        sw = \FPts{\Spec{A}},
         west/style = {>->},
-        west = i_f,
         ne = X,
         se = \ObjTerm{\FunPreSp},
       }
@@ -688,19 +690,12 @@ We present the classic perspective of schemes as locally ringed topoi.
     \end{tikzpicture}
   \]
 
-  We define the category $\FunSp$ of \emph{generalized spaces} as the full
-  subcategory of $\FunPreSp$ spanned by spaces.  $\FunSp$ can be seen to be a
-  logos because the class of Zariski local covers is a ``system of local
-  covers''.
-\end{para}
-
-\begin{para}
-  The collection of Zariski local covers is a system of local covers in the following sense:
-  \begin{enumerate}
-    \item Every cover is a Zariski local cover.
-    \item The Zariski local covers satisfy the 3-for-2 property.
-    \item A morphism $\Mor{E}{F}$ is a Zariski local cover if and only if for each $\Spec{A}$-valued point of $F$, the pullback $\Mor{E\times_{F}\FPts{\Spec{A}}}{\FPts{\Spec{A}}}$ is a Zariski local cover.
-  \end{enumerate}
+  We define the category $\FunSp$ of \emph{functorial spaces} as the full
+  subcategory of $\FunPreSp$ spanned by spaces. 
+  $\FunSp$ can be seen to be a
+  logos because the class of Zariski local covers is a system of local covers
+  (\cref{para:zariski-local-system}) and stable under base change.
+  %
 \end{para}
 
 
