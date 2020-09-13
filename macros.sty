@@ -23,6 +23,7 @@
 \NewDocumentCommand\ObjTerm{g}{\mathbf{1}\IfValueT{#1}{_{#1}}}
 \NewDocumentCommand\ArrTerm{g}{{!}\IfValueT{#1}{_{#1}}}
 \NewDocumentCommand\ArrId{m}{\mathbf{id}_{#1}}
+\NewDocumentCommand\Ob{m}{\operatorname{Ob}#1}
 \NewDocumentCommand\IHom{mm}{\bbrackets*{#1,#2}}
 \NewDocumentCommand\Hom{ogg}{%
   \IfValueTF{#1}{%
@@ -51,10 +52,11 @@
 \NewDocumentCommand\ZTop{}{\mathcal{Z}}
 \NewDocumentCommand\TTop{}{\mathcal{T}}
 \NewDocumentCommand\ThCat{}{\mathbb{T}}
-\NewDocumentCommand\SET{}{\mathbf{Set}}
-\NewDocumentCommand\CAT{}{\mathbf{Cat}}
+\NewDocumentCommand\SET{o}{\mathbf{Set}\IfValueT{#1}{_{#1}}}
+\NewDocumentCommand\CAT{o}{\mathbf{Cat}\IfValueT{#1}{_{#1}}}
+\NewDocumentCommand\SmCAT{o}{\mathbf{cat}\IfValueT{#1}{_{#1}}}
 \NewDocumentCommand\CoPsh{m}{\mathrm{CoPr}\prn{#1}}
-\NewDocumentCommand\Psh{m}{\mathrm{Pr}\prn{#1}}
+\NewDocumentCommand\Psh{om}{\mathrm{Pr}\IfValueT{#1}{_{#1}}\prn{#2}}
 \NewDocumentCommand\PrTop{m}{\widehat{#1}}
 \NewDocumentCommand\Sh{m}{\mathrm{Sh}\prn{#1}}
 

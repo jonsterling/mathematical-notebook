@@ -1,12 +1,3 @@
-\nocite{eisenbud-harris:2000}
-
-\chapter{Functorial geometry}
-\minitoc
-
-%\section{Commutative algebra}
-
-
-
 \NewDocumentCommand\Inv{sm}{\IfBooleanTF{#1}{\prn{#2}}{#2}^{-1}}
 \NewDocumentCommand\Aff{}{\mathbf{Aff}}
 \NewDocumentCommand\Sch{}{\mathbf{Sch}}
@@ -22,6 +13,20 @@
 \NewDocumentCommand\GS{g}{\Gamma\IfValueT{#1}{\prn{#1}}}
 \NewDocumentCommand\Ind{m}{\mathrm{Ind}\prn{#1}}
 \NewDocumentCommand\Pts{m}{\mathrm{Pt}\prn{#1}}
+\NewDocumentCommand\UU{g}{\mathscr{U}\IfValueT{#1}{_{#1}}}
+\NewDocumentCommand\VV{g}{\mathscr{V}\IfValueT{#1}{_{#1}}}
+\NewDocumentCommand\WW{g}{\mathscr{W}\IfValueT{#1}{_{#1}}}
+\NewDocumentCommand\FunSp{}{\ECat}
+\NewDocumentCommand\FunPreSp{}{\FunSp_{\mathit{pre}}}
+
+\nocite{eisenbud-harris:2000}
+
+\chapter{Functorial geometry}
+\minitoc
+
+%\section{Commutative algebra}
+
+
 
 I claim no originality for these notes! They are drawing together a number of
 ideas on the functorial formulation of algebraic geometry, due to a number of
@@ -34,8 +39,54 @@ knowledge'' of approximately two semesters of topos theory, a number of things
 become easier and less technical. These notes owe a lot in particular to
 \citet{blechschmidt:2017,johnstone:1977,lurie:dag:5}.
 
+\section{Category theoretic preliminaries}
 
-\section{Topos theoretic preliminaries}
+\subsection{Universes}
+
+\begin{para}
+  We follow the convention of Grothendieck universes, and in particular assume
+  that every set is contained in a universe $\UU$. Each universe $\UU$ is assumed
+  to correspond to a strongly inaccessible cardinal $\alpha>\omega$, and is
+  consequently closed under dependent sum, dependent product, and power sets.
+\end{para}
+
+
+\begin{para}
+  %
+  We adopt a vernacular approach to the relative sizes of sets, rooted at an
+  arbitrary strongly inaccessible cardinal.
+  %
+  \begin{enumerate}
+    \item $\UU$ is the (normal-sized) universe of small sets
+    \item $\VV$ is the (large) universe of normal-sized sets
+    \item $\WW$ is the (very large) universe of large sets
+  \end{enumerate}
+\end{para}
+
+\begin{para}
+  %
+  A \emph{$\UU$-category} is a category $\CCat$ whose collection of objects is unconstrained,
+  and whose hom-sets $\Hom[\CCat]{A}{B}$ are all contained in $\UU$.
+  %
+\end{para}
+
+\begin{para}
+  A \emph{$\UU$-small category} is a $\UU$-category whose collection of objects $\Ob{\CCat}$ is contained in $\UU$.
+\end{para}
+
+\begin{para}
+  We fix the following notations for categories of sets and categories:
+  \begin{enumerate}
+    \item The category of $\UU$-small sets is written $\SET[\UU]$.
+    \item The category of $\UU$-categories is written $\CAT[\UU]$. 
+    \item The category of $\UU$-small categories is written $\SmCAT[\UU]$.
+
+    \item Given any category $\CCat$, the category of $\UU$-presheaves on
+      $\CCat$ is written $\Psh[\UU]{\CCat} = \Hom{\OpCat{\CCat}}{\SET[\UU]}$.
+  \end{enumerate}
+\end{para}
+
+\subsection{Topoi and logoi}
 
 We share some notations and conventions with \citet{anel-joyal:2019}.
 
@@ -471,6 +522,8 @@ We present the classic perspective of schemes as locally ringed topoi.
   %
 \end{para}
 
+\subsection{Geometric schemes}
+
 \begin{para}
   %
   We observe, but do not prove, that the restriction of $\Spec$ to affine
@@ -500,7 +553,7 @@ We present the classic perspective of schemes as locally ringed topoi.
 
 \section{The functor of points}
 
-\subsection{The category of algebraic spaces}
+\subsection{The category of functorial spaces}
 
 \begin{para}
   \danger
@@ -512,7 +565,7 @@ We present the classic perspective of schemes as locally ringed topoi.
   --- only some sufficiently finitary schemes. Instead, we need a logos $\ECat$ whose
   \emph{sheaves} are some kind of generalized schemes. 
 
-  The downside of the correct choice for the logos of algebraic spaces is that
+  The downside of the correct choice for the logos of functorial spaces is that
   it is unclear what the corresponding topos classifies. While this may be
   aesthetically disappointing, it is worth remembering that $\ECat$ will always
   be viewed as a logos, a category \emph{in which} geometry happens, and not as
@@ -520,12 +573,136 @@ We present the classic perspective of schemes as locally ringed topoi.
   %
 \end{para}
 
-\begin{para}[Todo]
+\begin{para}
+  %
+  The category $\Ring$ of $\UU$-small rings is $\VV$-small.
+  %
+  Therefore, the category of \emph{(functorial) pre-spaces} $\FunPreSp =
+  \Psh[\VV]{\OpCat{\Ring}}$ is a logos, and the Yoneda embedding
+  $\EmbMor{\OpCat{\Ring}}{\FunPreSp}$ is fully faithful.
+  %
+\end{para}
+
+\NewDocumentCommand\FPts{m}{\mathsf{h}\prn{#1}}
+
+\begin{para}
+  We define the \emph{functor of points} $\FPts{\XTop}:\FunPreSp$ for a geometric scheme $\XTop$:
+  \begin{align*}
+    \FPts{\XTop}\prn{\XTop} &: \Mor|{|->}|{A}{\Hom[\Sch]{\Spec{A}}{\XTop}}
+  \end{align*}
+
+  The functor of points is itself functorial: it is the nerve corresponding to
+  the \emph{dense} embedding $\Mor{\OpCat{\Ring}\simeq\Aff}{\Sch}$, and it is
+  consequently fully faithful.
+\end{para}
+
+\begin{para}
+  %
+  While every scheme can be imported into $\FunPreSp$ fully faithfully, the
+  gluing of schemes does not correspond to the gluing of their corresponding
+  functors of points. This can be resolved by means of \emph{localization}, in
+  which we replace $\FunPreSp$ with a quotient logos $\FunSp$ that forces the functors
+  of points of certain gluings of schemes to become colimits.
+  %
+\end{para}
+
+\begin{para}
+  %
+  Let $\XTop=\Spec{A}$ be a geometric affine scheme; if $U\subseteq A$ is a
+  subset of $A$ that generates the unit ideal, then the corresponding family of
+  open immersions $\brc{\EmbMor{\Spec{A\brk{\Inv{a}}}}{\Spec{A}}\vertsep a\in U}$
+  induced by localizing at each $a\in U$ is called a \emph{Zariski open cover}
+  of $\XTop$. The resulting \emph{Zarisi coverage} on $\OpCat{\Ring}$ is written $K$.
+  %
+\end{para}
+
+\begin{para}
+  %
+  Let $\XTop = \Spec{A}$ be an affine scheme and let
+  $\brc{\EmbMor{\XTop_a}{\XTop}}$ be a Zariski open cover; the data of such an
+  open cover is concentrated in the single induced map $\Mor{\Coprod{a\in
+  U}{\FPts{\XTop_a}}}{\FPts{\XTop}}$ in $\FunPreSp$. We will refer to maps of
+  this form as \emph{generating Zariski local covers}.
+\end{para}
+
+\begin{para}
+  %
+  The notion of Zariski open covers can be extended from $\Aff$ to $\FunPreSp$,
+  to generate exactly the collection of maps in $\FunPreSp$ that we want to
+  force to become covers; we say that a natural transformation $\Mor[f]{E}{F}$
+  is a \emph{Zariski local cover} when for every $\Spec{A}$-valued point of $F$
+  lifts along some generating Zarkiski local cover through $f$ to a point of
+  $E$, as follows:
+  %
+  \[
+    \DiagramSquare{
+      nw = \Coprod{a\in U}{\FPts{\Spec{A\brk{\Inv{a}}}}},
+      width = 3cm,
+      north/style = exists,
+      sw = \FPts{\Spec{A}},
+      se = F,
+      ne = E,
+      east = f,
+      south = x,
+      north = \tilde{x}
+    }
+  \]
+\end{para}
+
+\begin{para}
+  Let $\Mor[f]{E}{F}$ be a Zariski local cover in $\FunPreSp$, and consider the image factorization:
+  \[
+    \begin{tikzpicture}[diagram]
+      \node (E) {$E$};
+      \node (F) [right = 2.5cm of E] {$F$};
+      \node (Im) [between = E and F, yshift = -1.5cm] {$\operatorname{Im}f$};
+      \path[->] (E) edge node [above] {$f$} (F);
+      \path[->>] (E) edge node [sloped,below] {$e_f$} (Im);
+      \path[>->] (Im) edge node [sloped,below] {$i_f$} (F);
+    \end{tikzpicture}
+  \]
+
+  If $\Mor[f]{E}{F}$ was already a cover, then
+  $\Mor|>->|[i_f]{\operatorname{Im}f}{F}$ would be an isomorphism, and vice
+  versa; therefore, a presheaf that treats $f$ as a cover is the same as one
+  that treats $i_f$ as an isomorphism. Therefore, we will use the term
+  \emph{Zariski local isomorphism} to refer to any morphism of the form
+  $\Mor|>->|{\operatorname{Im}f}{F}$ where $\Mor[f]{E}{B}$ is a Zariski local
+  cover.
+\end{para}
+
+\begin{para}
+  A presheaf $X$ is called a \emph{space} when it has the unique right lifting
+  property with respect to any Zariski local isomorphism $\Mor[i_f]{\operatorname{Im}{f}}{F}$:
+  \[
+    \begin{tikzpicture}[diagram]
+      \SpliceDiagramSquare{
+        nw = \operatorname{Im}{f},
+        sw = F,
+        west/style = {>->},
+        west = i_f,
+        ne = X,
+        se = \ObjTerm{\FunPreSp},
+      }
+      \path[exists,->] (sw) edge node [desc] {$\exists!$} (ne);
+    \end{tikzpicture}
+  \]
+
+  We define the category $\FunSp$ of \emph{generalized spaces} as the full
+  subcategory of $\FunPreSp$ spanned by spaces.  $\FunSp$ can be seen to be a
+  logos because the class of Zariski local covers is a ``system of local
+  covers''.
+\end{para}
+
+\begin{para}
+  The collection of Zariski local covers is a system of local covers in the following sense:
   \begin{enumerate}
-    \item Go back and define Grothendieck universes $\mathscr{U}$, relativizing everything. Some discussion of enlargement for locally presentable categories \`a la \citet{shulman:blog:enlargement} might be called for.
-    \item Define the ``$\mathscr{U}_\beta$-logos of algebraic spaces'' to be a localization of $\Hom{\Ring_{\alpha}}{\SET_\beta}$.
+    \item Every cover is a Zariski local cover,
+    \item The Zariski local covers satisfy the 3-for-2 property.
+    \item A morphism $\Mor{E}{F}$ is a Zariski local cover if and only if for each $\Spec{A}$-valued point of $F$, the pullback $\Mor{E\times_{F}\FPts{\Spec{A}}}{\FPts{\Spec{A}}}$ is a Zariski local cover.
   \end{enumerate}
 \end{para}
+
 
 %%% I was going to use the big zariski topos as a place where schemes live, but this will only end up being faithful for finitely presented schemes. One has to use a weirder topos, classifying formal filtered colimits of local rings, in order to get something big enough.
 
