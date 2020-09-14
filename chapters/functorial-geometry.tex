@@ -608,10 +608,10 @@ We present the classic perspective of schemes as locally ringed topoi.
 
 \begin{para}
   %
-  Let $\XTop=\Spec{A}$ be a geometric affine scheme; if $U\subseteq A$ is a
-  finite subset of $A$ that generates the unit ideal, then the corresponding family of
-  open immersions $\brc{\EmbMor{\Spec{A\brk{\Inv{a}}}}{\Spec{A}}\vertsep a\in U}$
-  induced by localizing at each $a\in U$ is called a \emph{Zariski open cover}
+  Let $\XTop=\Spec{A}$ be a geometric affine scheme; if $\brc{a_i}_{i\in I}$ is a
+  finite family of elements of $A$ that generates the unit ideal, then the corresponding family of
+  open immersions $\brc{\EmbMor{\Spec{A\brk{\Inv{a_i}}}}{\Spec{A}}\vertsep i\in I}$
+  induced by localizing at each $a_i$ is called a \emph{Zariski open cover}
   of $\XTop$. The resulting \emph{Zarisi coverage} on $\OpCat{\Ring}$ is written $K$.
   %
 \end{para}
@@ -620,26 +620,25 @@ We present the classic perspective of schemes as locally ringed topoi.
   %
   Let $\XTop = \Spec{A}$ be an affine scheme and let
   $\brc{\EmbMor{\XTop_a}{\XTop}}$ be a Zariski open cover; the data of such an
-  open cover is concentrated in the single induced map $\Mor{\Coprod{a\in
-  U}{\FPts{\XTop_a}}}{\FPts{\XTop}}$ in $\FunPreSp$. We will refer to maps of
+  open cover is concentrated in the single induced map $\Mor{\Coprod{i}{\FPts{\XTop_{a_i}}}}{\FPts{\XTop}}$ in $\FunPreSp$. We will refer to maps of
   this form as \emph{generating Zariski local covers}.
 \end{para}
 
-\begin{para}
+\begin{para}\label{para:zariski-local-cover}
   %
   The notion of Zariski open covers can be extended from $\Aff$ to $\FunPreSp$,
   to generate exactly the collection of maps in $\FunPreSp$ that we want to
   force to become covers; we say that a natural transformation $\Mor[f]{E}{F}$
   is a \emph{Zariski local cover} when for every $\Spec{A}$-valued point of $F$
-  lifts along some generating Zarkiski local cover through $f$ to a point of
+  lifts along some generating Zariski local cover through $f$ to a point of
   $E$, as follows:
   %
   \[
     \DiagramSquare{
-      nw = \Coprod{a\in U}{\FPts{\Spec{A\brk{\Inv{a}}}}},
+      nw = \Coprod{i}{\Yo{A\brk{\Inv{a_i}}}},
       width = 3cm,
       north/style = exists,
-      sw = \FPts{\Spec{A}},
+      sw = \Yo{A},
       se = F,
       ne = E,
       east = f,
@@ -653,8 +652,9 @@ We present the classic perspective of schemes as locally ringed topoi.
   The collection of Zariski local covers is a system of local covers in the following sense:
   \begin{enumerate}
     \item Every cover is a Zariski local cover.
-    \item The Zariski local covers satisfy the 3-for-2 property.
-    \item A morphism $\Mor{E}{F}$ is a Zariski local cover if and only if for each $\Spec{A}$-valued point of $F$, the pullback $\Mor{E\times_{F}\FPts{\Spec{A}}}{\FPts{\Spec{A}}}$ is a Zariski local cover.
+    \item Zariski local covers are closed under composition.
+    \item If $g\circ f$ is a Zariski local cover, then $g$ is a Zariski local cover.
+    \item A morphism $\Mor{E}{F}$ is a Zariski local cover if and only if for each $\Spec{A}$-valued point of $F$, the pullback $\Mor{E\times_{F}\Yo{A}}{\Yo{A}}$ is a Zariski local cover.
   \end{enumerate}
 \end{para}
 
@@ -664,24 +664,24 @@ We present the classic perspective of schemes as locally ringed topoi.
   A \emph{Zariski dense monomorphism} is a Zarizki local cover that is at the
   same time a monomorphism in $\FunPreSp$. In particular, a \emph{Zariski
   covering sieve} is a Zariski dense monomorphism of the form
-  $\Mor|>->|{U}{\FPts{\Spec{A}}}$. The dense monomorphisms are maps that will
+  $\Mor|>->|{U}{\Yo{A}}$. The dense monomorphisms are maps that will
   become isomorphisms under localization; dense monomorphisms are not the only
   maps that will become isomorphisms, because some non-monomorphisms may become
-  morphisms as well.
+  isomorphisms as well.
   %
 \end{para}
 
-\begin{para}
+\begin{para}\label{para:functorial-space}
   %
-  A presheaf $X$ is called a \emph{space} when it is right orthogonal to any
+  A presheaf $X$ is called a \emph{functorial space} when it is right orthogonal to any
   Zariski dense monomorphism, or (without loss of generality) any Zariski
-  covering sieve $\Mor|>->|{U}{\FPts{\Spec{A}}}$.
+  covering sieve $\Mor|>->|{U}{\Yo{A}}$.
   %
   \[
     \begin{tikzpicture}[diagram]
       \SpliceDiagramSquare{
         nw = U,
-        sw = \FPts{\Spec{A}},
+        sw = \Yo{A},
         west/style = {>->},
         ne = X,
         se = \ObjTerm{\FunPreSp},
@@ -691,11 +691,52 @@ We present the classic perspective of schemes as locally ringed topoi.
   \]
 
   We define the category $\FunSp$ of \emph{functorial spaces} as the full
-  subcategory of $\FunPreSp$ spanned by spaces. 
-  $\FunSp$ can be seen to be a
-  logos because the class of Zariski local covers is a system of local covers
-  (\cref{para:zariski-local-system}) and stable under base change.
+  subcategory of $\FunPreSp$ spanned by functorial spaces. Moreover, $\FunSp$ is a logos
+  by \cref{para:zariski-local-system}.
   %
+\end{para}
+
+\begin{para}
+  %
+  There is a more concrete way to check that a presheaf $X : \FunPreSp$ is a
+  functorial space; for each generating Zariski local cover
+  $\Mor{\Coprod{i}{\Yo{A\brk{\Inv{a_i}}}}}{\Yo{A}}$, it is enough for the
+  following to be an equalizer diagram:
+  \[
+    \begin{tikzpicture}[diagram]
+      \node (0) {$X\prn{A}$};
+      \node (1) [right = 2.5cm of 0] {$\Prod{i}{X\prn{A\brk{\Inv{a_i}}}}$};
+      \node (2) [right = 3.5cm of 1] {$\Prod{i,j}{X\prn{A\brk{\Inv{a_{i,j}}}}}$};
+      \path[->] (0) edge (1);
+      \path[->,shift left =.1cm] (1) edge (2);
+      \path[->,shift right =.1cm] (1) edge (2);
+    \end{tikzpicture}
+  \]
+
+  We fix a matching family $s_\bullet\in {\Prod{i}{X\prn{A\brk{\Inv{a_i}}}}}$
+  that agrees on the overlaps, i.e.\ $s_i$ and $s_j$ restrict to the same
+  section of $X$ at $A\brk{\Inv{a_{i,j}}}$; we must check that there is a
+  unique section of $X$ at $A$ that restricts to each $s_i$.
+
+  We choose a covering sieve $U\subseteq\Yo{A}$ generated by our local cover as follows:
+  \[
+    U\prn{B} = \brc{
+      \Mor[f]{A}{B} : \Ring
+      \vertsep
+      \text{$f$ factors through some the localization $\Mor|->>|{A}{A\brk{\Inv{a_i}}}$}
+    }
+  \]
+
+  We may then define an element $\Mor{U}{X}$; fixing a ring map
+  $\Mor[f = b\circ e_i]{A}{B}$ where $\Mor|->>|[e_i]{A}{A\brk{\Inv{a_i}}}$ and
+  $\Mor[b]{A\brk{\Inv{a_i}}}{B}$, we choose the section $X\prn{b}\prn{s_i}$ of
+  $X$ at $B$. By \cref{para:functorial-space}, we consequently have a morphism
+  $\Mor{\Yo{A}}{X}$ uniquely factoring the element $\Mor{U}{X}$,
+  and by the Yoneda lemma a corresponding section $\tilde{s}\in X\prn{A}$. 
+
+  We must still argue that $\tilde{s}$ is unique in the sense of the equalizer
+  diagram; this follows from the fact that any other section would determine an
+  element $\Mor{\Yo{A}}{X}$ that also factors $\Mor{U}{X}$.
 \end{para}
 
 
