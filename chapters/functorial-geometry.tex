@@ -736,26 +736,28 @@ We present the classic perspective of schemes as locally ringed topoi.
     \end{tikzpicture}
   \]
 
-  We fix a matching family $s_\bullet\in {\Prod{i}{X\prn{A\brk{\Inv{a_i}}}}}$
-  that agrees on the overlaps, i.e.\ $s_i$ and $s_j$ restrict to the same
-  section of $X$ at $A\brk{\Inv{a_{i,j}}}$; we must check that there is a
-  unique section of $X$ at $A$ that restricts to each $s_i$. To do so, we will
-  use the orthogonality condition of \nscref{para:functorial-space}, which takes
-  a covering sieve as input.
+  %% LOL: the following argues that ordinary sheafhood implies this equalizer thing, but I had intended to prove the converse.
 
-  We choose the covering sieve $U = S_{\brc{a_i}}$ from
-  \nscref{para:generating-local-cover-to-sieve}, defining an element
-  $\Mor{U}{X}$; fixing a ring map $\Mor[f = b\circ e_i]{A}{B}$ where
-  $\Mor|->>|[e_i]{A}{A\brk{\Inv{a_i}}}$ and $\Mor[b]{A\brk{\Inv{a_i}}}{B}$, we
-  choose the section $X\prn{b}\prn{s_i}$ of $X$ at $B$. By
-  \nscref{para:functorial-space}, we have a morphism $\Mor{\Yo{A}}{X}$ uniquely
-  factoring the element $\Mor{U}{X}$, and by the Yoneda lemma a corresponding
-  section $\tilde{s}\in X\prn{A}$. 
-  %
-  We must still argue that $\tilde{s}$ is unique in the sense of the equalizer
-  diagram, but this follows from the fact that any other such section would
-  determine an element $\Mor{\Yo{A}}{X}$ that also factors $\Mor{U}{X}$.
-  %
+%   We fix a matching family $s_\bullet\in {\Prod{i}{X\prn{A\brk{\Inv{a_i}}}}}$
+%   that agrees on the overlaps, i.e.\ $s_i$ and $s_j$ restrict to the same
+%   section of $X$ at $A\brk{\Inv{a_{i,j}}}$; we must check that there is a
+%   unique section of $X$ at $A$ that restricts to each $s_i$. To do so, we will
+%   use the orthogonality condition of \nscref{para:functorial-space}, which takes
+%   a covering sieve as input.
+% 
+%   We choose the covering sieve $U = S_{\brc{a_i}}$ from
+%   \nscref{para:generating-local-cover-to-sieve}, defining an element
+%   $\Mor{U}{X}$; fixing a ring map $\Mor[f = b\circ e_i]{A}{B}$ where
+%   $\Mor|->>|[e_i]{A}{A\brk{\Inv{a_i}}}$ and $\Mor[b]{A\brk{\Inv{a_i}}}{B}$, we
+%   choose the section $X\prn{b}\prn{s_i}$ of $X$ at $B$. By
+%   \nscref{para:functorial-space}, we have a morphism $\Mor{\Yo{A}}{X}$ uniquely
+%   factoring the element $\Mor{U}{X}$, and by the Yoneda lemma a corresponding
+%   section $\tilde{s}\in X\prn{A}$. 
+%   %
+%   We must still argue that $\tilde{s}$ is unique in the sense of the equalizer
+%   diagram, but this follows from the fact that any other such section would
+%   determine an element $\Mor{\Yo{A}}{X}$ that also factors $\Mor{U}{X}$.
+%   %
 \end{para}
 
 \begin{namespace}{partition-of-unity}
