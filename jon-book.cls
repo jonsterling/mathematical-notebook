@@ -1,6 +1,7 @@
 \LoadClass[oneside,a4paper,11pt]{memoir}
 
 \RequirePackage{manfnt}
+% \usepackage{showlabels}
 
 \RequirePackage{minitoc}
 \nomtcrule
@@ -210,6 +211,7 @@
 
 
 \newcounter{para}
+\numberwithin{equation}{para}
 
 \NewDocumentEnvironment{para}{o}{
   \refstepcounter{para}

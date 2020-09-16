@@ -119,7 +119,14 @@
   {\CoprodSymbol}_{#1}
 }
 
-\NewDocumentCommand\Sum{m}{\mindelim{1}{\SumSymbol}_{#1}}
+\NewDocumentCommand\Sum{sm}{
+  \IfBooleanTF{#1}{
+    \mindelim{2}{{\displaystyle\sum}}_{#2}
+  }{
+    \mindelim{1}{\SumSymbol}_{#2}
+  }
+}
+
 \NewDocumentCommand\Prod{m}{\mindelim{1}{\ProdSymbol}_{#1}}
 
 \NewDocumentCommand\ArrCat{m}{#1^{\to}}
