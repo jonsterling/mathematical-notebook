@@ -195,88 +195,89 @@ of rings are assumed to preserve $1$.
       \end{tikzpicture}
     \]
 
-    Suppose we have a matching family of elements $a_i\in A\brk{\Inv{f_i}}$
-    agreeing on the overlaps. Then each $a_i$ can be written as a formal fraction
-    ${\tilde{a}_i}/{f_i^m}$ for a uniform sufficiently large power $m$. The
-    condition that these match on the overlapped localizations implies that for
-    some sufficiently large $k$ we have $a_if_{ij}^k = a_j f_{ij}^k$, writing $f_{ij}$ for $f_if_j$.
-    %
-    Hence, replacing $a_i$ by $\tilde{a_i}/f_i^m$ and canceling on both sides, we have:
-    \begin{equation}\nslabel{eqn:rewrite}
-      \tilde{a}_i f_j^m f_{ij}^k = \tilde{a}_j f_i^m f_{ij}^k
-    \end{equation}
+    \begin{proof}
+      Suppose we have a matching family of elements $a_i\in A\brk{\Inv{f_i}}$
+      agreeing on the overlaps. Then each $a_i$ can be written as a formal fraction
+      ${\tilde{a}_i}/{f_i^m}$ for a uniform sufficiently large power $m$. The
+      condition that these match on the overlapped localizations implies that for
+      some sufficiently large $k$ we have $a_if_{ij}^k = a_j f_{ij}^k$, writing $f_{ij}$ for $f_if_j$.
+      %
+      Hence, replacing $a_i$ by $\tilde{a_i}/f_i^m$ and canceling on both sides, we have:
+      \begin{equation}\nslabel{eqn:rewrite}
+        \tilde{a}_i f_j^m f_{ij}^k = \tilde{a}_j f_i^m f_{ij}^k
+      \end{equation}
 
-    Because the $f_i$ generate the unit ideal, so do $f_i^{m+k}$; hence there
-    exist $c_i$ such that $1 = \Sum{i}{c_i f_i^{m+k}}$. For the amalgamation, we
-    choose $a = \Sum{i}{c_i\tilde{a}_i f_i^k}$; we must check that $a = a_j$ in
-    each $A\brk{\Inv{f_j}}$. First we observe that each $a_j$ can be massaged into a
-    form where \nscref{eqn:rewrite} applies:
-    %
-    \begin{equation}\nslabel{eqn:massage}
-      a_j = \frac{\tilde{a}_j}{f_j^m} 
-      = \frac{\tilde{a}_j f_j^{k}}{f_j^{m+k}}
-      = \frac{\tilde{a}_j f_j^{k}}{f_j^{m+k}}\Sum{i}{c_if_i^{m+k}}
-      =
-      \Sum*{i}{
-        \frac{
-          c_i \tilde{a}_j f_j^k f_i^{m+k}
-        }{
-          f_j^{m+k}
+      Because the $f_i$ generate the unit ideal, so do $f_i^{m+k}$; hence there
+      exist $c_i$ such that $1 = \Sum{i}{c_i f_i^{m+k}}$. For the amalgamation, we
+      choose $a = \Sum{i}{c_i\tilde{a}_i f_i^k}$; we must check that $a = a_j$ in
+      each $A\brk{\Inv{f_j}}$. First we observe that each $a_j$ can be massaged into a
+      form where \nscref{eqn:rewrite} applies:
+      %
+      \begin{equation}\nslabel{eqn:massage}
+        a_j = \frac{\tilde{a}_j}{f_j^m} 
+        = \frac{\tilde{a}_j f_j^{k}}{f_j^{m+k}}
+        = \frac{\tilde{a}_j f_j^{k}}{f_j^{m+k}}\Sum{i}{c_if_i^{m+k}}
+        =
+        \Sum*{i}{
+          \frac{
+            c_i \tilde{a}_j f_j^k f_i^{m+k}
+          }{
+            f_j^{m+k}
+          }
         }
-      }
-      =
-      \Sum*{i}{
-        \frac{
-          c_i \tilde{a}_j f_i^m f_{ij}^k
-        }{
-          f_j^{m+k}
+        =
+        \Sum*{i}{
+          \frac{
+            c_i \tilde{a}_j f_i^m f_{ij}^k
+          }{
+            f_j^{m+k}
+          }
         }
-      }
-    \end{equation}
+      \end{equation}
 
-    Hence, we can see that $a$ restricts to $a_j$ as desired:
-    \begin{align*}
-      a_j
-      &=
-      \Sum*{i}{
-        \frac{
-          c_i \tilde{a}_i f_j^m f_{ij}^k
-        }{
-          f_j^{m+k}
+      Hence, we can see that $a$ restricts to $a_j$ as desired:
+      \begin{align*}
+        a_j
+        &=
+        \Sum*{i}{
+          \frac{
+            c_i \tilde{a}_i f_j^m f_{ij}^k
+          }{
+            f_j^{m+k}
+          }
         }
-      }
-      &&\text{by \nscref{eqn:rewrite,eqn:massage}}
-      \\
-      &=
-      \Sum*{i}{
-        \frac{
-          c_i \tilde{a}_i f_{ij}^k
-        }{
-          f_j^{k}
+        &&\text{by \nscref{eqn:rewrite,eqn:massage}}
+        \\
+        &=
+        \Sum*{i}{
+          \frac{
+            c_i \tilde{a}_i f_{ij}^k
+          }{
+            f_j^{k}
+          }
         }
-      }
-      &&\text{cancel $f_j^m$}
-      \\
-      &=
-      \Sum{i}{
-        c_i \tilde{a}_i f_{i}^k
-      }
-      &&\text{cancel $f_j^k$}
-      \\
-      &= a
-      &&\text{by definition}
-    \end{align*}
+        &&\text{cancel $f_j^m$}
+        \\
+        &=
+        \Sum{i}{
+          c_i \tilde{a}_i f_{i}^k
+        }
+        &&\text{cancel $f_j^k$}
+        \\
+        &= a
+        &&\text{by definition}
+      \end{align*}
 
-    It remains to show that $a$ is unique with this property. Suppose there
-    were some other $a'$ that extended each $a_i$; without loss of generality,
-    we may consider the case that $a'=0\in A$ and hence each $a=a'=a_i=0\in
-    A\brk{\Inv{f_i}}$ (since each restriction map is a ring homorphism), and we want to
-    show that $a=0\in A$. By the aforementioned equation in $A\brk{\Inv{f_i}}$,
-    there exists $m$ large enough to make $f_i^m a = f_i^m a' = 0 \in A$ for
-    all $i$. But we may find $d_i$ such that $1 = \Sum{i}{d_i f_i^m}$, hence
-    $a = a\Sum{i}{d_i f_i^m} = \Sum{i}{d_i f_i^m a} = 0$.
+      It remains to show that $a$ is unique with this property. Suppose there
+      were some other $a'$ that extended each $a_i$; without loss of generality,
+      we may consider the case that $a'=0\in A$ and hence each $a=a'=a_i=0\in
+      A\brk{\Inv{f_i}}$ (since each restriction map is a ring homorphism), and we want to
+      show that $a=0\in A$. By the aforementioned equation in $A\brk{\Inv{f_i}}$,
+      there exists $m$ large enough to make $f_i^m a = f_i^m a' = 0 \in A$ for
+      all $i$. But we may find $d_i$ such that $1 = \Sum{i}{d_i f_i^m}$, hence
+      $a = a\Sum{i}{d_i f_i^m} = \Sum{i}{d_i f_i^m a} = 0$.
+    \end{proof}
   \end{para} 
-
 \end{namespace}
 
 
