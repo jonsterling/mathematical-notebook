@@ -701,7 +701,7 @@ before bootstrapping a notion of functorial scheme.
   %
 \end{para}
 
-\NewDocumentCommand\FPts{m}{\mathsf{h}\prn{#1}}
+\NewDocumentCommand\FPts{m}{\mathit{h}_{#1}}
 
 \begin{para}
   We define the \emph{functor of points} $\FPts{\XTop}:\FunPreSp$ for a geometric scheme $\XTop$:
@@ -724,46 +724,122 @@ before bootstrapping a notion of functorial scheme.
   %
 \end{para}
 
+\NewDocumentCommand\Functions{s}{\IfBooleanTF{#1}{\dot{\mathsf{F}}}{\mathsf{F}}}
+\NewDocumentCommand\ZZ{}{\mathbb{Z}}
+
+
 \begin{para}
   %
-  Let $\XTop=\Spec{A}$ be a geometric affine scheme; if $\brc{a_i}_{i\in I}$ is a
-  finite family of elements of $A$ that generates the unit ideal, then the corresponding family of
-  open immersions $\brc{\EmbMor{\Spec{A\brk{\Inv{a_i}}}}{\Spec{A}}\vertsep i\in I}$
-  induced by localizing at each $a_i$ is called a \emph{Zariski open cover}
-  of $\XTop$. The resulting \emph{Zariski coverage} on $\OpCat{\Ring}$ is written $K$.
+  Considering the equivalence $\OpCat{\Ring}\simeq \Aff$, we will refer to any
+  representable object in $\FunPreSp$ as an affine scheme; given any presheaf
+  $X:\FunPreSp$, a \emph{function on $X$} is a natural transformation
+  $\Mor{X}{\Functions}$.
   %
 \end{para}
 
 \begin{para}
   %
-  Let $\XTop = \Spec{A}$ be an affine scheme and let
-  $\brc{\EmbMor{\XTop_a}{\XTop}}$ be a Zariski open cover; the data of such an
-  open cover is concentrated in the single induced map $\Mor{\Coprod{i}{\FPts{\XTop_{a_i}}}}{\FPts{\XTop}}$ in $\FunPreSp$. We will refer to maps of
-  this form as \emph{generating Zariski local covers}.
+  In the functorial language, we may fine a number of useful ``classifying
+  spaces'' for functions as well as localizations. First, consider the fact
+  that ring homomorphisms $\Mor{\ZZ\brk{x}}{A}$ are in bijection with elements
+  of $A$; by duality, we may rephrase this as a bijection between
+  \emph{functions} a scheme $\XTop$ and morphisms of schemes
+  $\Mor{\XTop}{\Spec{\ZZ\brk{x}}}$.
+%
+  Hence, in the logos $\FunPreSp$ of presheaves, one may speak of the presheaf
+  $\Functions := \FPts{\Spec{\ZZ\brk{x}}}$ as the \emph{classifying space} for
+  functions. 
 \end{para}
 
-\begin{para}\nslabel{para:zariski-local-cover}
+\begin{para}
   %
-  The notion of Zariski open covers can be extended from $\Aff$ to $\FunPreSp$,
-  to generate exactly the collection of maps in $\FunPreSp$ that we want to
-  force to become covers; we say that a natural transformation $\Mor[f]{E}{F}$
-  is a \emph{Zariski local cover} when for every $\Spec{A}$-valued point of $F$
-  lifts along some generating Zariski local cover through $f$ to a point of
-  $E$, as follows:
-  %
+  By the same token, we may define a classifying space of units $\Functions* :=
+  \FPts{\Spec{\ZZ\brk{x,\Inv{x}}}}$, and the evident open immersion
+  $\Mor{\Functions*}{\Functions}$ corresponding under duality to the
+  localization $\Mor{\ZZ\brk{x}}{\ZZ\brk{x,\Inv{x}}}$ will serve as the
+  functorial prototype for \emph{all} localizations at a function.
+%
+  Indeed, if $A$ is a ring and $f\in A$ is an element, then the localization
+  $A\brk{\Inv{f}}$ may be obtained by the following pushout in the category of
+  rings:
   \[
     \DiagramSquare{
-      nw = \Coprod{i}{\Yo{A\brk{\Inv{a_i}}}},
-      width = 3cm,
-      north/style = exists,
-      sw = \Yo{A},
-      se = F,
-      ne = E,
-      east = f,
-      south = x,
-      north = \tilde{x}
+      se/style = pushout,
+      nw = \ZZ\brk{x},
+      sw = \ZZ\brk{x,\Inv{x}},
+      ne = A,
+      north = f,
+      se = A\brk{\Inv{f}}
     }
   \]
+
+  Now write $\Mor{X_f}{X}$ for the natural transformation of (functorial)
+  affine schemes corresponding to the localization map
+  $\Mor{A}{A\brk{\Inv{f}}}$; by algebra--geometry duality, we see that this
+  arises as a pullback of $\Mor{\Functions*}{\Functions}$:
+  \[
+    \DiagramSquare{
+      nw/style = pullback,
+      nw = X_f,
+      sw = X,
+      ne = \Functions*,
+      se = \Functions,
+      south = f,
+    }
+  \]
+\end{para}
+
+
+\begin{para}\label{para:gen-zar-open-cover}
+  %
+  Let $\XTop=\Spec{A}$ be a geometric affine scheme; if $\Mor[f_\bullet]{I}{A}$ is a
+  finite family of elements that generates the unit ideal, then the corresponding family of
+  open immersions $\brc{\EmbMor{\XTop_{f_i}}{\XTop}\vertsep i\in I}$
+  induced by localizing at each $a$ is called a \emph{generating Zariski open cover}
+  of $\XTop$. %The resulting \emph{Zariski coverage} on $\OpCat{\Ring}$ is written $K$.
+  %
+\end{para}
+
+\begin{para}
+%
+  The generating Zariski open covers (\cref{para:gen-zar-open-cover}) have an
+  avatar in the functorial language of $\FunPreSp$, as any maps of the form
+  $\Mor{\Coprod{I}{X_\bullet}}{X}$ where $I$ is a finite set, $X$ is an affine
+  scheme and each map $\Mor{X_i}{X}$ arises as a pullback of
+  $\Mor{\Functions*}{\Functions}$ such that the characteristic functions $\Mor[f_i]{X}{\Functions}$ generate the unit ideal:
+  \[
+    \DiagramSquare{
+      nw/style = pullback,
+      nw = X_i,
+      sw = X,
+      ne = \Functions*,
+      se = \Functions,
+      south/style = exists,
+      south = f_i,
+    }
+  \]
+
+  Such a natural transformation $\Mor{\Coprod{I}{X_\bullet}}{X}$ is called a
+  \emph{generating Zariski local cover}.
+\end{para}
+
+\begin{para}
+  %
+  An arbitrary natural transformation $\Mor[\phi]{Y}{X}$ will be called a
+  Zariski local cover when every $W$-valued point of $X$ with $W$ affine lifts
+  along some generating Zariski local cover $\Mor{\Coprod{I}{W_\bullet}}{W}$
+  to a point of $Y$ as follows:
+  \[
+    \DiagramSquare{
+      nw = \Coprod{I}{W_\bullet},
+      sw = W,
+      se = X,
+      ne = Y,
+      north/style = exists,
+      east = \phi,
+    }
+  \]
+  %
 \end{para}
 
 \begin{para}\nslabel{para:zariski-local-system}
@@ -772,16 +848,20 @@ before bootstrapping a notion of functorial scheme.
     \item Every cover is a Zariski local cover.
     \item Zariski local covers are closed under composition.
     \item If $g\circ f$ is a Zariski local cover, then $g$ is a Zariski local cover.
-    \item A morphism $\Mor{E}{F}$ is a Zariski local cover if and only if for each $\Spec{A}$-valued point of $F$, the pullback $\Mor{E\times_{F}\Yo{A}}{\Yo{A}}$ is a Zariski local cover.
+    \item A morphism $\Mor{E}{F}$ is a Zariski local cover if and only if for each $\Spec{A}$-valued point of $F$, the pullback $\Mor{E\times_{F}\FPts{\Spec{A}}}{\FPts{\Spec{A}}}$ is a Zariski local cover.
   \end{enumerate}
 \end{para}
+
+
+
+\clearpage
 
 
 \begin{para}
   %
   A \emph{Zariski dense monomorphism} is a Zarizki local cover that is at the
   same time a monomorphism in $\FunPreSp$. In particular, a \emph{Zariski
-  covering sieve} is a Zariski dense monomorphism of the form $U\subseteq\Yo{A}$.
+  covering sieve} is a Zariski dense monomorphism of the form $U\subseteq\FPts{\Spec{A}}$.
   The dense monomorphisms are maps that will
   become isomorphisms under localization; dense monomorphisms are not the only
   maps that will become isomorphisms, because some non-monomorphisms may become
@@ -792,22 +872,22 @@ before bootstrapping a notion of functorial scheme.
 \begin{para}\nslabel{para:generating-local-cover-to-sieve}
   %
   Every generating Zariski local cover
-  $\Mor{\Coprod{i}{\Yo{A\brk{a_i}}}}{\Yo{A}}$ generates a covering sieve
-  $S_{\brc{a_i}}\subseteq\Yo{A}$ defined as the set of ring morphisms factoring through one
-  of the localizations $\Mor|->>|{A}{A\brk{\Inv{a_i}}}$.
+  $\Mor{\Coprod{I}{\FPts{\Spec{A}_\bullet}}}{\FPts{\Spec{A}}}$ generates a covering sieve
+  $S\subseteq\FPts{\Spec{A}}$ defined as the set of ring morphisms factoring through one
+  of the localizations $\Mor|->>|{A}{A\brk{\Inv{f_i}}}$.
 \end{para}
 
 \begin{para}\nslabel{para:functorial-space}
   %
   A presheaf $X$ is called a \emph{functorial space} when it is right orthogonal to any
   Zariski dense monomorphism, or (without loss of generality) any Zariski
-  covering sieve $\Mor|>->|{U}{\Yo{A}}$.
+  covering sieve $U\subseteq\FPts{\Spec{A}}$.
   %
   \[
     \begin{tikzpicture}[diagram]
       \SpliceDiagramSquare{
         nw = U,
-        sw = \Yo{A},
+        sw = \FPts{\Spec{A}},
         west/style = {>->},
         ne = X,
         se = \ObjTerm{\FunPreSp},
@@ -826,50 +906,26 @@ before bootstrapping a notion of functorial scheme.
   %
   There is a more concrete way to check that a presheaf $X : \FunPreSp$ is a
   functorial space; for each generating Zariski local cover
-  $\Mor{\Coprod{i}{\Yo{A\brk{\Inv{a_i}}}}}{\Yo{A}}$, it is enough for the
-  following to be an equalizer diagram:
+  $\Mor{\Coprod{I}{W_\bullet}}{W}$, it is enough for the
+  following to be an equalizer diagram in $\SET$:
   \[
     \begin{tikzpicture}[diagram]
-      \node (0) {$X\prn{A}$};
-      \node (1) [right = 2.5cm of 0] {$\Prod{i}{X\prn{A\brk{\Inv{a_i}}}}$};
-      \node (2) [right = 3.5cm of 1] {$\Prod{i,j}{X\prn{A\brk{\Inv{a_{i,j}}}}}$};
+      \node (0) {$\Hom{W}{X}$};
+      \node (1) [right = 3.5cm of 0] {$\Prod{i}{\Hom{W_i}{X}}$};
+      \node (2) [right = 3.5cm of 1] {$\Prod{i,j}{\Hom{W_{ij}}{X}}$};
       \path[->] (0) edge (1);
       \path[->,shift left =.1cm] (1) edge (2);
       \path[->,shift right =.1cm] (1) edge (2);
     \end{tikzpicture}
   \]
-
-  %% LOL: the following argues that ordinary sheafhood implies this equalizer thing, but I had intended to prove the converse.
-
-%   We fix a matching family $s_\bullet\in {\Prod{i}{X\prn{A\brk{\Inv{a_i}}}}}$
-%   that agrees on the overlaps, i.e.\ $s_i$ and $s_j$ restrict to the same
-%   section of $X$ at $A\brk{\Inv{a_{i,j}}}$; we must check that there is a
-%   unique section of $X$ at $A$ that restricts to each $s_i$. To do so, we will
-%   use the orthogonality condition of \nscref{para:functorial-space}, which takes
-%   a covering sieve as input.
-% 
-%   We choose the covering sieve $U = S_{\brc{a_i}}$ from
-%   \nscref{para:generating-local-cover-to-sieve}, defining an element
-%   $\Mor{U}{X}$; fixing a ring map $\Mor[f = b\circ e_i]{A}{B}$ where
-%   $\Mor|->>|[e_i]{A}{A\brk{\Inv{a_i}}}$ and $\Mor[b]{A\brk{\Inv{a_i}}}{B}$, we
-%   choose the section $X\prn{b}\prn{s_i}$ of $X$ at $B$. By
-%   \nscref{para:functorial-space}, we have a morphism $\Mor{\Yo{A}}{X}$ uniquely
-%   factoring the element $\Mor{U}{X}$, and by the Yoneda lemma a corresponding
-%   section $\tilde{s}\in X\prn{A}$. 
-%   %
-%   We must still argue that $\tilde{s}$ is unique in the sense of the equalizer
-%   diagram, but this follows from the fact that any other such section would
-%   determine an element $\Mor{\Yo{A}}{X}$ that also factors $\Mor{U}{X}$.
-%   %
 \end{para}
 
 \begin{para}
   %
-  Given an affine scheme $\XTop = \Spec{B}$, the representable presheaf $\Yo{B}
-  = \FPts{\Spec{B}} : \FunPreSp$ is a functorial space --- this follows almost
-  immediately from \nscref{partition-of-unity/para}, because the gluing may be
-  used to construct a ring map; consequently, we will refer to any
-  representable as a \emph{(functorial) affine scheme}. 
+  Given an geometric affine scheme $\XTop = \Spec{B}$, the functorial affine
+  scheme $\FPts{\Spec{B}} : \FunPreSp$ is a functorial space --- this follows
+  almost immediately from \nscref{partition-of-unity/para}, because the gluing
+  may be used to construct a ring map.
 
   \begin{proof}
     %

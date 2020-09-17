@@ -47,7 +47,7 @@
 \setaftersubsubsecskip{-1em}
 
 \setlrmarginsandblock{1.55in}{*}{1}
-\setulmarginsandblock{1.55in}{*}{1}
+\setulmarginsandblock{1.35in}{*}{1}
 \setheaderspaces{*}{2\onelineskip}{*}
 \checkandfixthelayout
 
