@@ -870,6 +870,20 @@ before bootstrapping a notion of functorial scheme.
   immediately from \nscref{partition-of-unity/para}, because the gluing may be
   used to construct a ring map; consequently, we will refer to any
   representable as a \emph{(functorial) affine scheme}. 
+
+  \begin{proof}
+    %
+    Suppose we have a matching family of ring maps
+    $\Mor[a_i]{B}{A\brk{\Inv{f_i}}}$; we will define a ring map $\Mor[a]{B}{A}$
+    using the partition of unity argument.  For each $b$, we have $a_i\prn{b}
+    \in A\brk{\Inv{f_i}}$; by \nscref{partition-of-unity/para} these may be
+    glued into a single $a\prn{b}$. This assignment is functional because of
+    the uniqueness of gluings; it remains to observe that the function
+    so-defined is a homomorphism of rings, i.e.\ commutes with all ring
+    operations, but this follows from the fact that each $a_i$ is a
+    homomorphism of rings.
+    %
+  \end{proof}
 \end{para}
 
 \clearpage
