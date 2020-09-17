@@ -724,20 +724,11 @@ before bootstrapping a notion of functorial scheme.
   %
 \end{para}
 
-\NewDocumentCommand\Functions{s}{\IfBooleanTF{#1}{\dot{\mathsf{F}}}{\mathsf{F}}}
+\NewDocumentCommand\Units{}{\mathbb{G}_{\mathsf{m}}}
+\NewDocumentCommand\AffLine{}{\mathbb{A}^1}
 \NewDocumentCommand\ZZ{}{\mathbb{Z}}
 
-
-\begin{para}
-  %
-  Considering the equivalence $\OpCat{\Ring}\simeq \Aff$, we will refer to any
-  representable object in $\FunPreSp$ as an affine scheme; given any presheaf
-  $X:\FunPreSp$, a \emph{function on $X$} is a natural transformation
-  $\Mor{X}{\Functions}$.
-  %
-\end{para}
-
-\begin{para}
+\begin{para}[The affine line]
   %
   In the functorial language, we may fine a number of useful ``classifying
   spaces'' for functions as well as localizations. First, consider the fact
@@ -746,16 +737,29 @@ before bootstrapping a notion of functorial scheme.
   \emph{functions} a scheme $\XTop$ and morphisms of schemes
   $\Mor{\XTop}{\Spec{\ZZ\brk{x}}}$.
 %
-  Hence, in the logos $\FunPreSp$ of presheaves, one may speak of the presheaf
-  $\Functions := \FPts{\Spec{\ZZ\brk{x}}}$ as the \emph{classifying space} for
+  Hence, in the logos $\FunPreSp$ of presheaves, one may speak of the \emph{affine line}
+  $\AffLine := \FPts{\Spec{\ZZ\brk{x}}}$ as the classifying space for
   functions. 
+\end{para}
+
+
+\begin{para}
+  %
+  Considering the equivalence $\OpCat{\Ring}\simeq \Aff$, we will refer to any
+  representable object in $\FunPreSp$ as an affine scheme; given any presheaf
+  $X:\FunPreSp$, a \emph{function on $X$} is a natural transformation
+  $\Mor{X}{\AffLine}$.
+  %
+\end{para}
+
+\begin{para}
 \end{para}
 
 \begin{para}
   %
-  By the same token, we may define a classifying space of units $\Functions* :=
+  By the same token, we may define a classifying space of units $\Units :=
   \FPts{\Spec{\ZZ\brk{x,\Inv{x}}}}$, and the evident open immersion
-  $\Mor{\Functions*}{\Functions}$ corresponding under duality to the
+  $\Mor{\Units}{\AffLine}$ corresponding under duality to the
   localization $\Mor{\ZZ\brk{x}}{\ZZ\brk{x,\Inv{x}}}$ will serve as the
   functorial prototype for \emph{all} localizations at a function.
 %
@@ -776,14 +780,14 @@ before bootstrapping a notion of functorial scheme.
   Now write $\Mor{X_f}{X}$ for the natural transformation of (functorial)
   affine schemes corresponding to the localization map
   $\Mor{A}{A\brk{\Inv{f}}}$; by algebra--geometry duality, we see that this
-  arises as a pullback of $\Mor{\Functions*}{\Functions}$:
+  arises as a pullback of $\Mor{\Units}{\AffLine}$:
   \[
     \DiagramSquare{
       nw/style = pullback,
       nw = X_f,
       sw = X,
-      ne = \Functions*,
-      se = \Functions,
+      ne = \Units,
+      se = \AffLine,
       south = f,
     }
   \]
@@ -806,14 +810,14 @@ before bootstrapping a notion of functorial scheme.
   avatar in the functorial language of $\FunPreSp$, as any maps of the form
   $\Mor{\Coprod{I}{X_\bullet}}{X}$ where $I$ is a finite set, $X$ is an affine
   scheme and each map $\Mor{X_i}{X}$ arises as a pullback of
-  $\Mor{\Functions*}{\Functions}$ such that the characteristic functions $\Mor[f_i]{X}{\Functions}$ generate the unit ideal:
+  $\Mor{\Units}{\AffLine}$ such that the characteristic functions $\Mor[f_i]{X}{\AffLine}$ generate the unit ideal:
   \[
     \DiagramSquare{
       nw/style = pullback,
       nw = X_i,
       sw = X,
-      ne = \Functions*,
-      se = \Functions,
+      ne = \Units,
+      se = \AffLine,
       south/style = exists,
       south = f_i,
     }
