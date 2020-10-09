@@ -2,7 +2,7 @@
 \NewDocumentCommand\Aff{}{\mathbf{Aff}}
 \NewDocumentCommand\Sch{}{\mathbf{Sch}}
 \NewDocumentCommand\AffFP{}{\mathbf{Aff}_{\textit{f.p.}}}
-\NewDocumentCommand\Ring{}{\mathbf{Ring}}
+\NewDocumentCommand\Ring{o}{\mathbf{Ring}\IfValueT{#1}{_{#1}}}
 \NewDocumentCommand\LocRing{}{\mathbf{Ring}_{\mathrm{Loc}}}
 \NewDocumentCommand\RingFP{}{\mindelim{1}\mathbf{Ring}_{\textit{f.p.}}}
 \NewDocumentCommand\RingedTOP{}{\mathbf{RingedTop}}
@@ -16,14 +16,12 @@
 \NewDocumentCommand\UU{g}{\mathscr{U}\IfValueT{#1}{_{#1}}}
 \NewDocumentCommand\VV{g}{\mathscr{V}\IfValueT{#1}{_{#1}}}
 \NewDocumentCommand\WW{g}{\mathscr{W}\IfValueT{#1}{_{#1}}}
-\NewDocumentCommand\FunSp{}{\ECat}
-\NewDocumentCommand\FunPreSp{}{\FunSp_{\mathit{pre}}}
+\NewDocumentCommand\ZFun{}{\ECat}
+\NewDocumentCommand\ZarZFun{}{\ECat_{\mathit{Zar}}}
 
 \nocite{eisenbud-harris:2000}
 
 \chapter{Functorial geometry}
-\minitoc
-
 
 
 I claim no originality for these notes! They are drawing together a number of
@@ -41,15 +39,15 @@ become easier and less technical. These notes owe a lot in particular to
 
 \subsection{Universes}
 
-\begin{para}
+\begin{node}
   We follow the convention of Grothendieck universes, and in particular assume
   that every set is contained in a universe $\UU$. Each universe $\UU$ is assumed
   to correspond to a strongly inaccessible cardinal $\alpha>\omega$, and is
   consequently closed under dependent sum, dependent product, and power sets.
-\end{para}
+\end{node}
 
 
-\begin{para}
+\begin{node}
   %
   We adopt a vernacular approach to the relative sizes of sets, rooted at an
   arbitrary strongly inaccessible cardinal.
@@ -59,20 +57,20 @@ become easier and less technical. These notes owe a lot in particular to
     \item $\VV$ is the (large) universe of normal-sized sets
     \item $\WW$ is the (very large) universe of large sets
   \end{enumerate}
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   A \emph{$\UU$-category} is a category $\CCat$ whose collection of objects is unconstrained,
   and whose hom-sets $\Hom[\CCat]{A}{B}$ are all contained in $\UU$.
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   A \emph{$\UU$-small category} is a $\UU$-category whose collection of objects $\Ob{\CCat}$ is contained in $\UU$.
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   We fix the following notations for categories of sets and categories:
   \begin{enumerate}
     \item The category of $\UU$-small sets is written $\SET[\UU]$.
@@ -82,13 +80,13 @@ become easier and less technical. These notes owe a lot in particular to
     \item Given any category $\CCat$, the category of $\UU$-presheaves on
       $\CCat$ is written $\Psh[\UU]{\CCat} = \Hom{\OpCat{\CCat}}{\SET[\UU]}$.
   \end{enumerate}
-\end{para}
+\end{node}
 
 \subsection{Topoi and logoi}
 
 We share some notations and conventions with \citet{anel-joyal:2019}.
 
-\begin{para}
+\begin{node}
   %
   Let $\CCat$ be a category; we will write $\AlxTop{\CCat}$ for the \emph{Alexandrov topos}
   defined by the equation $\Sh{\AlxTop{\CCat}} = \CoPsh{\CCat} =
@@ -101,9 +99,9 @@ We share some notations and conventions with \citet{anel-joyal:2019}.
   the category of \emph{all} $\ThCat$-models, being the free completion under
   filtered colimits.
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   Let $\CCat$ be a category; we will write $\PrTop{\CCat}=
   \AlxTop{\OpCat{\CCat}}$ for the topos defined by the equation
@@ -111,9 +109,9 @@ We share some notations and conventions with \citet{anel-joyal:2019}.
   \ThCat$ is a finite limit theory; then $\PrTop{\ThCat}$ is the classifying
   topos of $\ThCat$-models.
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   The important idea hiding in the intuitions above is the famous
   Gabriel--Ulmer duality between a finite limit theory and its category of its
@@ -121,65 +119,65 @@ We share some notations and conventions with \citet{anel-joyal:2019}.
   Lawvere duality between a finite product theory and its category of free
   finitely generated models~\citep{lawvere:thesis}.
   %
-\end{para}
+\end{node}
 
 \subsection{Stalkwise conditions}
 
-\begin{para}
+\begin{node}
   %
   In classic presentations of scheme theory, many conditions on sheaves of
   algebras are tested stalkwise; this is only possible because most topoi under
   consideration in geometry have enough points!
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   Let $\XTop$ be a topos; we denote by $\Pts{\XTop}$ the category of points
   $\Hom[\TOP]{\Pt}{\XTop}$. Given a point $x:\Pts{\XTop}$ and a sheaf
   $E:\Sh{\XTop}$, the \emph{stalk} $E_x : \SET$ of $E$ at $x$ is the inverse
   image $x^*E$.
   %
-\end{para}
+\end{node}
  
-\begin{para}
+\begin{node}
   %
   Let $\XTop$ be a topos; $\XTop$ is said to \emph{have enough points} when any
   morphism of $\Mor[f]{E}{F} : \Sh{\XTop}$ is an isomorphism if for every point $x: \Pts{\XTop}$ the function on stalks $\Mor[f_x]{E_x}{F_x}$ is an isomorphism.
   %
-\end{para}
+\end{node}
 
 
-\begin{para}
+\begin{node}
   %
   Rather than stating conditions relative to the stalks, we prefer to state
   them \emph{directly} in terms of the internal logic of each topos. This
   approach is more robust, and works even when a topos doesn't have enough
   points.
   %
-\end{para}
+\end{node}
 
 \section{Commutative algebra}
 
 In these notes, all rings are assumed commutative with unit and homomorphisms
 of rings are assumed to preserve $1$.
 
-\begin{para}
+\begin{node}
   %
   A ring is called \emph{local} it has a unique maximal ideal. When $A,B$ are
   local rings, a homomorphism $\Mor[f]{A}{B}$ is local when it reflects
   invertibility, i.e.\ for $a\in A$ if $f(a)$ is a unit then $a$ is a unit.
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   We will write $\Ring$ for the category of rings and ring homomorphisms and
   $\LocRing$ for the category of local rings and local ring homomorphisms.
   %
-\end{para}
+\end{node}
 
 \begin{namespace}{partition-of-unity}
-  \begin{para}[Partition of unity]\nslabel{para}
+  \begin{node}\nslabel{node}
     %
     Let $A$ be a ring and let $f_i$ be a finite set of elements of $A$ that generate the unit ideal. Then
     the following diagram
@@ -277,14 +275,14 @@ of rings are assumed to preserve $1$.
       all $i$. But we may find $d_i$ such that $1 = \Sum{i}{d_i f_i^m}$, hence
       $a = a\Sum{i}{d_i f_i^m} = \Sum{i}{d_i f_i^m a} = 0$.
     \end{proof}
-  \end{para} 
+  \end{node} 
 \end{namespace}
 
 
 
 \subsection{Classifying topoi}
 
-\begin{para}
+\begin{node}
   %
   The theories of rings and local rings are both geometrical; consequently,
   they both have classifying topoi, respectively $\brk{\Ring},\brk{\LocRing}$.
@@ -295,9 +293,9 @@ of rings are assumed to preserve $1$.
   category of sheaves, to emphasize the sense in which a classifying topos
   freely adds a generic model of a given theory to the background set theory.
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   The classifying topos of rings is the Alexandrov topos $\brk{\Ring} =
   \AlxTop{\RingFP}$; on the other hand, the classifying topos of local rings
@@ -305,11 +303,11 @@ of rings are assumed to preserve $1$.
   In particular, $\SET\brk{\LocRing}$ is a localization of $\SET\brk{\Ring}$
   generated by the \emph{Zariski topology}.
   %
-\end{para}
+\end{node}
 
 % \section{Affine schemes}
 % 
-% \begin{para}
+% \begin{node}
 %   %
 %   An \emph{affine scheme} is the formal dual of a commutative ring, i.e.\ an
 %   object of the category $\Aff = \OpCat{\Ring}$. 
@@ -318,14 +316,14 @@ of rings are assumed to preserve $1$.
 %  % conversely, when $X$ is an affine scheme, we write $\Str{X}$ for the
 %  % corresponding commutative ring.
 %   %
-% \end{para}
+% \end{node}
 % 
-% \begin{para}
+% \begin{node}
 %   A \emph{distinguished open immersion} of affine schemes is the dual to a
 %   localization map $\Mor{A}{A\brk{\Inv{f}}}$ of commutative rings for some $f \in A$.
 %   %in which $Y \cong \Spec{\Str{X}\brk{f^{-1}}}$ for a function $f \in
 %   %\Str{X}$. 
-% \end{para}
+% \end{node}
 % 
 % %\begin{definition}
 % %  A finitely presented affine scheme is an object of the category $\AffFP = \OpCat{\RingFP}$.
@@ -339,7 +337,7 @@ before bootstrapping a notion of functorial scheme.
 
 \subsection{Locally ringed topoi}
 
-\begin{para}
+\begin{node}
   %
   A \emph{ringed topos} is a pair $\prn{\XTop,\Str{\XTop}}$ where $\XTop$ is a
   topos and $\Str{\XTop}$ is a \emph{sheaf of rings} in on $\XTop$, i.e.\
@@ -347,9 +345,9 @@ before bootstrapping a notion of functorial scheme.
 %
   We will frequently abuse notation by writing $\XTop$ for the pair
   $\prn{\XTop,\Str{\XTop}}$.
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   The correct notion of morphism between ringed topoi is given by the \emph{lax
   slice} 2-category $\RingedTOP = \LaxSl{\TOP}{\brk{\Ring}}$ whose objects are
   evidently the ringed topoi.
@@ -359,9 +357,9 @@ before bootstrapping a notion of functorial scheme.
   topoi $\Mor[f]{\XTop}{\YTop}$ together with a morphism of ring objects
   $\Mor[f^\sharp]{f^*\Str{\YTop}}{\Str{\XTop}}$ called the \emph{comorphism}.
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   From the algebraic perspective, the structure sheaf
   $\Mor[\Str{\XTop}]{\XTop}{\brk{\Ring}}$ is a lex and cocontinuous functor
   $\Mor[\Str{\XTop}^*]{\SET\brk{\Ring}}{\Sh{\XTop}}$. Precomposing with the
@@ -376,9 +374,9 @@ before bootstrapping a notion of functorial scheme.
   correct to think of $\Str{\XTop}^*A$ as the sheaf collection of elements of
   $\Str{\XTop}$; likewise, it is correct pitchfork think of
   $\Str{\XTop}^*\prn{A\brk{\Inv{x}}}$ as the sheaf of units of $\Str{\XTop}$.
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   A locally ringed topos is a ringed topos $\XTop$ such that $\Str{\XTop}$ is a
   local ring, i.e.\ a ring object such that ``$\Str{\XTop}$ has a unique
@@ -404,15 +402,15 @@ before bootstrapping a notion of functorial scheme.
   back local ring $f^*\Str{\YTop}$ is taken by $f^\sharp$ to a unit of
   $\Str{\XTop}$ if and only if it was already a unit in $f^*\Str{\YTop}$ ---
   which is the same as $f^\sharp$ being a local ring map.
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   An open immersion of locally ringed topoi is one of the form
   $\EmbMor[j]{\YTop}{\XTop}$ such that underlying morphism of topoi is an open
   immersion, and $\Spec{\YTop} \cong j^*\Spec{\XTop}$.
   %
-\end{para}
+\end{node}
 
 
 
@@ -421,7 +419,7 @@ before bootstrapping a notion of functorial scheme.
 
 \subsection{The spectrum of a commutative ring}\nslabel{sec:geometric-spectrum}
 
-\begin{para}\nslabel{para:spec-underlying-space}
+\begin{node}\nslabel{node:spec-underlying-space}
   %
   Consider the geometric theory of a ring equipped with a prime filter (the
   complement of a prime ideal); this gives rise to a projection of classifying
@@ -433,9 +431,9 @@ before bootstrapping a notion of functorial scheme.
   topos of prime filters of $A$, the underlying space of the \emph{spectrum} of
   $A$.
   %
-\end{para}
+\end{node}
 
-\begin{para}\nslabel{para:localization-geom-mor}
+\begin{node}\nslabel{node:localization-geom-mor}
   %
   We will exhibit a morphism of topoi $\Mor{\brk{\Prime}}{\brk{\LocRing}}$
   that takes a ring equipped with a prime filter $S \subseteq{A}$ to the
@@ -445,10 +443,10 @@ before bootstrapping a notion of functorial scheme.
   generic ring equipped with a prime filter $\prn{U,S}$ of
   $\SET\brk{\Prime}$ to the local ring $U\brk{\Inv{S}}$.
   %
-\end{para}
+\end{node}
 
-\begin{para}
-  The \emph{spectrum} of a ring is the locally ringed topos defined below using \nscref{para:spec-underlying-space,para:localization-geom-mor}.
+\begin{node}
+  The \emph{spectrum} of a ring is the locally ringed topos defined below using \nscref{node:spec-underlying-space,node:localization-geom-mor}.
   \[
     \begin{tikzpicture}[diagram]
       \SpliceDiagramSquare{
@@ -471,36 +469,36 @@ before bootstrapping a notion of functorial scheme.
   under inverse image. The construction depicted here also appears in
   \citet{johnstone:1977}.
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
 %
   Another construction of the Zariski spectrum was suggested to the author by
   Mathieu Anel. We may consider the classifying topos $\brk{\mathbf{LocalLoc}}$ of
   the theory of \emph{local localizations}, a subtopos of the cotensor
-  $\vvmathbb{2}\pitchfork\brk{\Ring}$ (the classifier of ring maps);
+  $\mathbf{2}\pitchfork\brk{\Ring}$ (the classifier of ring maps);
   $\brk{\mathbf{LocalLoc}}$ is equivalent to $\brk{\Prime}$ from
-  \nscref{para:spec-underlying-space}, so the spectrum may be constructed
+  \nscref{node:spec-underlying-space}, so the spectrum may be constructed
   analogously.
   %
-\end{para}
+\end{node}
 
 
 
-\begin{para}
+\begin{node}
   %
   Classically, the spectrum of a ring is a locally ringed topological space
   $\Spec{A}$ and the topos we have constructed here is called the \emph{little
   Zariski topos} of $A$. We prefer to speak of our topos as the spectrum, and
   refer to $\Sh{\Spec{A}} = \SET\brk{\Prime\prn{A}}$ as the \emph{little Zariski logos} of $A$.
   %
-\end{para}
+\end{node}
 
 
 
 \subsection{The big Zariski topos of a commutative ring}
 
-\begin{para}\nslabel{para:big-zariski}
+\begin{node}\nslabel{node:big-zariski}
   Let $A$ be a commutative ring, i.e.\ a morphism of topoi
   $\Mor{*}{\brk{\Ring}}$; then the \emph{big Zariski topos} of $\Spec{A}$ is the
   locally ringed topos defined by the following \emph{comma square} in the
@@ -523,11 +521,11 @@ before bootstrapping a notion of functorial scheme.
       \draw[two cell] (ne) to[bend right=10] node [midway] {$$} (sw);
     \end{tikzpicture}
   \]
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
-  From \nscref{para:big-zariski}, it can be seen that $\Zar{\Spec{A}}$ is the
+  From \nscref{node:big-zariski}, it can be seen that $\Zar{\Spec{A}}$ is the
   classifying topos of \emph{local $A$-algebras}. Let $\XTop$ be a topos; then
   a morphism $\Mor{\XTop}{A}$ consists of a local ring
   $\Mor[B]{\XTop}{\brk{\LocRing}}$ together with a homomorphism of rings
@@ -557,9 +555,9 @@ before bootstrapping a notion of functorial scheme.
       \draw[two cell] (r-ctr) to[bend right=20] node [midway,sloped,below] {$\alpha$} (l-ctr);
     \end{tikzpicture}
   \]
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   \danger
   %
   The big Zariski topos \emph{is not} obtained as a (weak) pullback of topoi:
@@ -568,11 +566,11 @@ before bootstrapping a notion of functorial scheme.
   pullback would be the topoi classifying local rings that are isomorphic to
   $A$!
   %
-\end{para}
+\end{node}
 
 
 
-\begin{para}
+\begin{node}
   %
   Let $\Mor{A}{B}$ be a morphism of rings; we will show that this gives rise to
   a morphism of topoi $\Mor{\Zar{\Spec{B}}}{\Zar{\Spec{A}}}$ using the universal property
@@ -620,11 +618,11 @@ before bootstrapping a notion of functorial scheme.
     \end{tikzpicture}
   \]
   %
-\end{para}
+\end{node}
 
 \subsection{Affine geometric schemes}
 
-\begin{para}
+\begin{node}
   %
   An \emph{affine geometric scheme} is a locally ringed space lying in the
   essential image of the pseudofunctor
@@ -638,27 +636,27 @@ before bootstrapping a notion of functorial scheme.
   corresponds to an \emph{isomorphism} between locales because a preorder has
   no non-trivial isomorphisms.
   %
-\end{para}
+\end{node}
 
 \subsection{Geometric schemes}
 
-\begin{para}
+\begin{node}
   %
   We observe, but do not prove, that the restriction of $\Spec$ to affine
   schemes exhibits an equivalence $\OpCat{\Ring}\simeq\Aff$.
   %
-\end{para}
+\end{node}
 
-%\begin{para}
+%\begin{node}
 %  %
 %  A \emph{distinguished open immersion} of affine schemes is a morphism of the
 %  form $\Mor[D\prn{a}]{\Spec{A\brk{\Inv{a}}}}{\Spec{A}}$ for some element $a \in A$.
 %  %
-%\end{para}
+%\end{node}
 
 \NewDocumentCommand\Sub{m}{\mathbf{Sub}\prn{#1}}
 
-\begin{para}\nslabel{para:geometric-scheme}
+\begin{node}\nslabel{node:geometric-scheme}
   %
   Let $\XTop$ be a locally ringed topos. $\XTop$ is a called a \emph{geometric scheme}
   when there exists a set of open immersions $\EmbMor{\XTop_{U_i}}{\XTop}$ such
@@ -666,14 +664,14 @@ before bootstrapping a notion of functorial scheme.
   every affine scheme is a scheme. We define $\Sch$ to be the full subcategory
   of $\LocRingedTOP$ spanned by schemes.
   %
-\end{para}
+\end{node}
 
 
 \section{The functor of points}
 
 \subsection{The category of functorial spaces}
 
-\begin{para}
+\begin{node}
   \danger
   %
   One is tempted to use the logos of sheaves on the big Zariski topos
@@ -689,22 +687,30 @@ before bootstrapping a notion of functorial scheme.
   be viewed as a logos, a category \emph{in which} geometry happens, and not as
   a topos (a geometrical object).
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
-  The category $\Ring$ of $\UU$-small rings is $\VV$-small.
+  The category $\Ring[\UU]$ of $\UU$-small rings is $\VV$-small.
   %
-  Therefore, the category of \emph{(functorial) pre-spaces} $\FunPreSp =
+  Therefore, the category of \emph{(functorial) pre-spaces} $\ZFun =
   \Psh[\VV]{\OpCat{\Ring}}$ is a logos, and the Yoneda embedding
-  $\EmbMor{\OpCat{\Ring}}{\FunPreSp}$ is fully faithful.
+  $\EmbMor{\OpCat{\Ring}}{\ZFun}$ is fully faithful.
+  \begin{quote}
+    %
+    Comparing to \citet{demazure-gabriel:1980}, our $\Ring[\UU]$ is $\mathbf{M}$
+    and our $\SET[\VV]$ is $\mathbf{E}$. Then, our category of functorial
+    pre-spaces $\ZFun$ is exactly the category $\mathbf{ME} =
+    \Hom{\mathbf{M}}{\mathbf{E}}$.
+    %
+  \end{quote}
   %
-\end{para}
+\end{node}
 
 \NewDocumentCommand\FPts{m}{\mathit{h}_{#1}}
 
-\begin{para}
-  We define the \emph{functor of points} $\FPts{\XTop}:\FunPreSp$ for a geometric scheme $\XTop$:
+\begin{node}
+  We define the \emph{functor of points} $\FPts{\XTop}:\ZFun$ for a geometric scheme $\XTop$:
   \begin{align*}
     \FPts{\XTop} &: \Mor|{|->}|{A}{\Hom[\Sch]{\Spec{A}}{\XTop}}
   \end{align*}
@@ -712,23 +718,23 @@ before bootstrapping a notion of functorial scheme.
   The functor of points is itself functorial: it is the nerve corresponding to
   the \emph{dense} embedding $\Mor{\OpCat{\Ring}\simeq\Aff}{\Sch}$, and it is
   consequently fully faithful.
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
-  While every scheme can be imported into $\FunPreSp$ fully faithfully, the
+  While every scheme can be imported into $\ZFun$ fully faithfully, the
   gluing of schemes does not correspond to the gluing of their corresponding
   functors of points. This can be resolved by means of \emph{localization}, in
-  which we replace $\FunPreSp$ with a quotient logos $\FunSp$ that forces the functors
+  which we replace $\ZFun$ with a quotient logos $\ZarZFun$ that forces the functors
   of points of certain gluings of schemes to become colimits.
   %
-\end{para}
+\end{node}
 
-\NewDocumentCommand\Units{}{\mathbb{G}_{\mathsf{m}}}
-\NewDocumentCommand\AffLine{}{\mathbb{A}^1}
+\NewDocumentCommand\AffLine{}{\mathbb{A}}
+\NewDocumentCommand\Units{}{\mathbb{A}^{\times}}
 \NewDocumentCommand\ZZ{}{\mathbb{Z}}
 
-\begin{para}[The affine line]
+\begin{node}
   %
   In the functorial language, we may fine a number of useful ``classifying
   spaces'' for functions as well as localizations. First, consider the fact
@@ -737,25 +743,22 @@ before bootstrapping a notion of functorial scheme.
   \emph{functions} a scheme $\XTop$ and morphisms of schemes
   $\Mor{\XTop}{\Spec{\ZZ\brk{x}}}$.
 %
-  Hence, in the logos $\FunPreSp$ of presheaves, one may speak of the \emph{affine line}
+  Hence, in the logos $\ZFun$ of presheaves, one may speak of the \emph{affine line}
   $\AffLine := \FPts{\Spec{\ZZ\brk{x}}}$ as the classifying space for
   functions. 
-\end{para}
+\end{node}
 
 
-\begin{para}
+\begin{node}
   %
   Considering the equivalence $\OpCat{\Ring}\simeq \Aff$, we will refer to any
-  representable object in $\FunPreSp$ as an affine scheme; given any presheaf
-  $X:\FunPreSp$, a \emph{function on $X$} is a natural transformation
+  representable object in $\ZFun$ as an affine scheme; given any presheaf
+  $X:\ZFun$, a \emph{function on $X$} is a natural transformation
   $\Mor{X}{\AffLine}$.
   %
-\end{para}
+\end{node}
 
-\begin{para}
-\end{para}
-
-\begin{para}
+\begin{node}
   %
   By the same token, we may define a classifying space of units $\Units :=
   \FPts{\Spec{\ZZ\brk{x,\Inv{x}}}}$, and the evident open immersion
@@ -791,10 +794,10 @@ before bootstrapping a notion of functorial scheme.
       south = f,
     }
   \]
-\end{para}
+\end{node}
 
 
-\begin{para}\label{para:gen-zar-open-cover}
+\begin{node}\nslabel{node:gen-zar-open-cover}
   %
   Let $\XTop=\Spec{A}$ be a geometric affine scheme; if $\Mor[f_\bullet]{I}{A}$ is a
   finite family of elements that generates the unit ideal, then the corresponding family of
@@ -802,12 +805,12 @@ before bootstrapping a notion of functorial scheme.
   induced by localizing at each $a$ is called a \emph{generating Zariski open cover}
   of $\XTop$. %The resulting \emph{Zariski coverage} on $\OpCat{\Ring}$ is written $K$.
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
 %
-  The generating Zariski open covers (\cref{para:gen-zar-open-cover}) have an
-  avatar in the functorial language of $\FunPreSp$, as any maps of the form
+  The generating Zariski open covers \nscref{node:gen-zar-open-cover} have an
+  avatar in the functorial language of $\ZFun$, as any maps of the form
   $\Mor{\Coprod{I}{X_\bullet}}{X}$ where $I$ is a finite set, $X$ is an affine
   scheme and each map $\Mor{X_i}{X}$ arises as a pullback of
   $\Mor{\Units}{\AffLine}$ such that the characteristic functions $\Mor[f_i]{X}{\AffLine}$ generate the unit ideal:
@@ -825,9 +828,9 @@ before bootstrapping a notion of functorial scheme.
 
   Such a natural transformation $\Mor{\Coprod{I}{X_\bullet}}{X}$ is called a
   \emph{generating Zariski local cover}.
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   An arbitrary natural transformation $\Mor[\phi]{Y}{X}$ will be called a
   Zariski local cover when every $W$-valued point of $X$ with $W$ affine lifts
@@ -844,9 +847,9 @@ before bootstrapping a notion of functorial scheme.
     }
   \]
   %
-\end{para}
+\end{node}
 
-\begin{para}\nslabel{para:zariski-local-system}
+\begin{node}\nslabel{node:zariski-local-system}
   The collection of Zariski local covers is a system of local covers in the following sense:
   \begin{enumerate}
     \item Every cover is a Zariski local cover.
@@ -854,34 +857,34 @@ before bootstrapping a notion of functorial scheme.
     \item If $g\circ f$ is a Zariski local cover, then $g$ is a Zariski local cover.
     \item A morphism $\Mor{E}{F}$ is a Zariski local cover if and only if for each $\Spec{A}$-valued point of $F$, the pullback $\Mor{E\times_{F}\FPts{\Spec{A}}}{\FPts{\Spec{A}}}$ is a Zariski local cover.
   \end{enumerate}
-\end{para}
+\end{node}
 
 
 
 \clearpage
 
 
-\begin{para}
+\begin{node}
   %
   A \emph{Zariski dense monomorphism} is a Zarizki local cover that is at the
-  same time a monomorphism in $\FunPreSp$. In particular, a \emph{Zariski
+  same time a monomorphism in $\ZFun$. In particular, a \emph{Zariski
   covering sieve} is a Zariski dense monomorphism of the form $U\subseteq\FPts{\Spec{A}}$.
   The dense monomorphisms are maps that will
   become isomorphisms under localization; dense monomorphisms are not the only
   maps that will become isomorphisms, because some non-monomorphisms may become
   isomorphisms as well.
   %
-\end{para}
+\end{node}
 
-\begin{para}\nslabel{para:generating-local-cover-to-sieve}
+\begin{node}\nslabel{node:generating-local-cover-to-sieve}
   %
   Every generating Zariski local cover
   $\Mor{\Coprod{I}{\FPts{\Spec{A}_\bullet}}}{\FPts{\Spec{A}}}$ generates a covering sieve
   $S\subseteq\FPts{\Spec{A}}$ defined as the set of ring morphisms factoring through one
   of the localizations $\Mor|->>|{A}{A\brk{\Inv{f_i}}}$.
-\end{para}
+\end{node}
 
-\begin{para}\nslabel{para:functorial-space}
+\begin{node}\nslabel{node:functorial-space}
   %
   A presheaf $X$ is called a \emph{functorial space} when it is right orthogonal to any
   Zariski dense monomorphism, or (without loss of generality) any Zariski
@@ -894,21 +897,21 @@ before bootstrapping a notion of functorial scheme.
         sw = \FPts{\Spec{A}},
         west/style = {>->},
         ne = X,
-        se = \ObjTerm{\FunPreSp},
+        se = \ObjTerm{\ZFun},
       }
       \path[exists,->] (sw) edge node [desc] {$\exists!$} (ne);
     \end{tikzpicture}
   \]
 
-  We define the category $\FunSp$ of \emph{functorial spaces} as the full
-  subcategory of $\FunPreSp$ spanned by functorial spaces. Moreover, $\FunSp$ is a logos
-  by \nscref{para:zariski-local-system}.
+  We define the category $\ZarZFun$ of \emph{functorial spaces} as the full
+  subcategory of $\ZFun$ spanned by functorial spaces. Moreover, $\ZarZFun$ is a logos
+  by \nscref{node:zariski-local-system}.
   %
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
-  There is a more concrete way to check that a presheaf $X : \FunPreSp$ is a
+  There is a more concrete way to check that a presheaf $X : \ZFun$ is a
   functorial space; for each generating Zariski local cover
   $\Mor{\Coprod{I}{W_\bullet}}{W}$, it is enough for the
   following to be an equalizer diagram in $\SET$:
@@ -922,13 +925,13 @@ before bootstrapping a notion of functorial scheme.
       \path[->,shift right =.1cm] (1) edge (2);
     \end{tikzpicture}
   \]
-\end{para}
+\end{node}
 
-\begin{para}
+\begin{node}
   %
   Given an geometric affine scheme $\XTop = \Spec{B}$, the functorial affine
-  scheme $\FPts{\Spec{B}} : \FunPreSp$ is a functorial space --- this follows
-  almost immediately from \nscref{partition-of-unity/para}, because the gluing
+  scheme $\FPts{\Spec{B}} : \ZFun$ is a functorial space --- this follows
+  almost immediately from \nscref{partition-of-unity/node}, because the gluing
   may be used to construct a ring map.
 
   \begin{proof}
@@ -936,7 +939,7 @@ before bootstrapping a notion of functorial scheme.
     Suppose we have a matching family of ring maps
     $\Mor[a_i]{B}{A\brk{\Inv{f_i}}}$; we will define a ring map $\Mor[a]{B}{A}$
     using the partition of unity argument.  For each $b$, we have $a_i\prn{b}
-    \in A\brk{\Inv{f_i}}$; by \nscref{partition-of-unity/para} these may be
+    \in A\brk{\Inv{f_i}}$; by \nscref{partition-of-unity/node} these may be
     glued into a single $a\prn{b}$. This assignment is functional because of
     the uniqueness of gluings; it remains to observe that the function
     so-defined is a homomorphism of rings, i.e.\ commutes with all ring
@@ -944,7 +947,9 @@ before bootstrapping a notion of functorial scheme.
     homomorphism of rings.
     %
   \end{proof}
-\end{para}
+\end{node}
+
+
 
 \clearpage
 

@@ -1,9 +1,79 @@
-\documentclass{jon-book}
+\documentclass{ega}
+\usepackage{xparse}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage[memoir]{dieudonne}
 \usepackage{jon-todo}
 \usepackage{mathpartir}
 \usepackage{macros}
 \usepackage{namespace}
 \usepackage{eucal}
+
+
+\usepackage[backend=biber,natbib=true, doi=true, citestyle=alphabetic, backref=true, sortcites=true, style=alphabetic, maxnames=1000, mincrossrefs=99]{biblatex}
+\setcounter{biburlnumpenalty}{9000}
+\setcounter{biburlucpenalty}{9000}
+\setcounter{biburllcpenalty}{9000}
+
+\usepackage{silence}
+\WarningFilter{latex}{Marginpar on page}
+\WarningFilter{latexfont}{Font shape}
+\WarningFilter{latexfont}{Some font}
+\WarningFilter*{amsthm}{The \@nx\qedhere command}
+
+\usepackage[shortlabels]{enumitem}
+
+\setlength\DieudonneNodeIndent{0pt}
+
+\setlist{itemsep = 0pt}
+\setlist[enumerate,1]{label = \arabic*),ref = \arabic*}
+\setlist[enumerate,2]{label = \emph{\alph*}),ref = \theenumi.\emph{\alph*}}
+\setlist[enumerate,3]{label = \roman*),ref = \theenumii.\roman*}
+\setlist[description]{%
+  font={\normalfont\itshape\bfseries}
+}
+
+
+\newif\ifmainmatter
+\appto\mainmatter{\mainmattertrue}
+\appto\backmatter{\mainmatterfalse}
+\appto\appendix{\mainmatterfalse}
+
+\RenewDocumentCommand\chaptermark{m}{%
+  \markboth{%
+    \scshape\MakeLowercase{%
+      \ifmainmatter\chaptername~\oldstylenums\thechapter.~\fi#1
+    }%
+  }{}%
+}%
+
+\nouppercaseheads
+\makeoddhead{headings}{%
+  \ifmainmatter\S~\thesection\fi%
+}{\leftmark}{\thepage}
+
+
+\setlength\parindent{.4cm}
+
+
+\usepackage{xcolor}
+
+\definecolor{Matterhorn}{RGB}{77,77,77}
+\definecolor{RegalBlue}{RGB}{3,69,117}
+\definecolor{RedDevil}{RGB}{134,1,17}
+
+\microtypesetup{
+  activate={true,nocompatibility},
+  final,
+  tracking=false,
+  kerning=true,
+  spacing=true,
+  factor=1100,
+  stretch=10,
+  shrink=10
+}
+
+
 
 %\usepackage[inline]{showlabels}
 %\renewcommand{\showlabelfont}{\small\ttfamily\color{gray}}
@@ -38,7 +108,6 @@
 \maketitle
 
 \frontmatter
-\dominitoc
 \tableofcontents
 
 \mainmatter

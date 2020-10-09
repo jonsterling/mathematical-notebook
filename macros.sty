@@ -1,3 +1,7 @@
+\RequirePackage{xparse}
+\RequirePackage{jmsdelim}
+\RequirePackage{jon-tikz}
+\RequirePackage{stmaryrd}
 
 \NewDocumentCommand\MathSmall{m}{\mbox{\scriptsize $#1$}}
 
@@ -25,7 +29,7 @@
 \NewDocumentCommand\ArrId{m}{\mathbf{id}_{#1}}
 \NewDocumentCommand\Ob{m}{\operatorname{Ob}#1}
 \NewDocumentCommand\IHom{mm}{\bbrackets*{#1,#2}}
-\NewDocumentCommand\Hom{ogg}{%
+\RenewDocumentCommand\Hom{ogg}{%
   \IfValueTF{#1}{%
     \IfValueTF{#2}{%
       \operatorname{Hom}_{#1}\prn{#2,#3}%
@@ -161,16 +165,18 @@
 
 \NewDocumentCommand{\Pow}{m}{\mathcal{P}(#1)}
 
-\NewDocumentCommand{\CubeCat}{}{\CUBE}
-\NewDocumentCommand{\Int}{}{\mathbb{I}}
-\NewDocumentCommand{\Univ}{}{\mathcal{U}}
-
-
-\usepackage{wasysym}
-\NewDocumentCommand{\Open}{o}{\textnormal{$\Circle\IfValueT{#1}{_{#1}}$}}
-\NewDocumentCommand{\Closed}{o}{\textnormal{$\CIRCLE\IfValueT{#1}{_{#1}}$}}
-
 \NewDocumentCommand{\InclSp}{g}{\mathsf{Top}\IfValueT{#1}{(#1)}}
 \NewDocumentCommand{\EnvLog}{g}{\mathsf{Log}\IfValueT{#1}{(#1)}}
 
 \NewDocumentCommand{\Pt}{}{\ast}
+
+
+\NewDocumentCommand\vertsep{}{\mathrel{\delimsep{\vert}}}
+
+\NewDocumentCommand\Ast{}{\textup{*}}
+\newcommand{\danger}{\marginpar[\hfill {?}]{{?}\hfill}}
+
+
+
+
+
