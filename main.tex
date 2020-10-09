@@ -42,7 +42,7 @@
 \RenewDocumentCommand\chaptermark{m}{%
   \markboth{%
     \scshape\MakeLowercase{%
-      \ifmainmatter\chaptername~\oldstylenums\thechapter.~\fi#1
+      \ifmainmatter\chaptername~\oldstylenums\thechapter.~\fi\textsc{#1}
     }%
   }{}%
 }%
