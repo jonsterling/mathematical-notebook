@@ -40,14 +40,14 @@
     \operatorname{Hom}\prn{#2,#3}%
   }%
 }
-\NewDocumentCommand\ECat{}{\mathcal{E}}
-\NewDocumentCommand\FCat{}{\mathcal{F}}
-\NewDocumentCommand\CCat{}{\mathcal{C}}
-\NewDocumentCommand\GCat{}{\mathcal{G}}
-\NewDocumentCommand\ICat{}{\mathcal{I}}
-\NewDocumentCommand\QCat{}{\mathcal{Q}}
-\NewDocumentCommand\TCat{}{\mathcal{T}}
-\NewDocumentCommand\DCat{}{\mathcal{D}}
+\NewDocumentCommand\ECat{}{\mathscr{E}}
+\NewDocumentCommand\FCat{}{\mathscr{F}}
+\NewDocumentCommand\CCat{}{\mathscr{C}}
+\NewDocumentCommand\GCat{}{\mathscr{G}}
+\NewDocumentCommand\ICat{}{\mathscr{I}}
+\NewDocumentCommand\QCat{}{\mathscr{Q}}
+\NewDocumentCommand\TCat{}{\mathscr{T}}
+\NewDocumentCommand\DCat{}{\mathscr{D}}
 
 \NewDocumentCommand\OpCat{m}{#1^{\mathrm{op}}}
 
@@ -174,7 +174,31 @@
 \NewDocumentCommand\vertsep{}{\mathrel{\delimsep{\vert}}}
 
 \NewDocumentCommand\Ast{}{\textup{*}}
-\newcommand{\danger}{\marginpar[\hfill {?}]{{?}\hfill}}
+
+\NewDocumentCommand\dbend{}{
+  \tikz[
+    scale = 2.0,
+    line cap=but,
+    line join=round,
+    x=.5em,
+    line width = .2em,
+    y=1*(height("Z")-\pgflinewidth)*(1-sin(10)),
+    rotate=-10,
+    rounded corners=1.5pt,
+  ] {
+    \draw (1, 0) -- (0, 0) -- (1, 1) -- (0, 1);
+  }
+}
+
+\NewDocumentCommand\danger{}{%
+  \marginpar[%
+    \vspace{\dimexpr-5pt}%
+    \hfill\dbend%
+  ]{%
+    \vspace{\dimexpr-5pt}%
+    \dbend\hfill%
+  }%
+}
 
 
 
